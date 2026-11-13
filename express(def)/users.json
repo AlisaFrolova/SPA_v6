@@ -1,0 +1,92 @@
+[
+  {
+    "username": "sssss",
+    "id": "65575332",
+    "password": "$2b$10$na.0vC9wqmWWB7kIuWWOyOu7o34ryjOKnRylCVzM7joeNri0urN56",
+    "bio": "No bio yet...",
+    "role": "user",
+    "starredPosts": [],
+    "posts": [
+      {
+        "authorId": "65575332",
+        "title": "test1",
+        "description": "11",
+        "date": "2026-11-13 ",
+        "author": "sssss",
+        "id": "783015",
+        "stars": 1,
+        "comments": [
+          {
+            "author": "ss45544554",
+            "date": "2026-11-13 ",
+            "text": "lsllsls",
+            "id": "440872"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "username": "ss45544554",
+    "id": "82100261",
+    "password": "$2b$10$pBBRWvFWNep/Lr.DTWXePO7ianhjaA5Cej3WU8sxoiF3Cb4/uX.wW",
+    "bio": "No bio yet...",
+    "role": "user",
+    "starredPosts": [
+      "783015",
+      "662777"
+    ],
+    "posts": [
+      {
+        "authorId": "82100261",
+        "title": "test2",
+        "description": "22",
+        "date": "2026-11-13 ",
+        "author": "ss45544554",
+        "id": "662777",
+        "stars": 4,
+        "comments": [
+          {
+            "author": "ss45544554",
+            "date": "2026-11-13 ",
+            "text": "dddd",
+            "id": "542607"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "username": "ffkfkkf",
+    "id": "58507403",
+    "password": "$2b$10$BdppXFv7cjShbGx8ZYz3RuyaLAF4.lOltX5Mf3EcXYwBqYtIigiXa",
+    "bio": "No bio yet...",
+    "role": "user",
+    "starredPosts": [
+      "662777"
+    ],
+    "posts": []
+  },
+  {
+    "username": "doowowow",
+    "id": "50810272",
+    "password": "$2b$10$QF/NKEPIZC1PYkd0nNB6GujHK.oNrIUKvqB2SCrCbHdZNcfEDyT.e",
+    "bio": "No bio yet...",
+    "role": "user",
+    "starredPosts": [
+      "662777"
+    ],
+    "posts": []
+  },
+  {
+    "username": "lslslls",
+    "id": "44118536",
+    "password": "$2b$10$LzU162D2OoVs3/ydRIUBTuFTaI5immVUhRUGUGxIcD4UxMUZWJBgy",
+    "bio": "No bio yet...",
+    "role": "user",
+    "starredPosts": [
+      "662777"
+    ],
+    "posts": []
+  }
+]
