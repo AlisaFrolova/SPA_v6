@@ -1,5 +1,5 @@
 import { createEl, createInputBlock } from "../../../tools/DOM_tools.js"
-import { postMethod, getUserId } from "../../../tools/API_tools.js"
+import { postMethod } from "../../../tools/API_tools.js"
 
 export default function updatePassSection(){//! ^^ almost the same as the Update Profile, -> (?)
     const section = createEl("section", "", "updateSection")
@@ -16,11 +16,10 @@ export default function updatePassSection(){//! ^^ almost the same as the Update
         const newPassword= document.querySelector(".newPasswordInput").value
 
         if(password !== "" && newPassword !== ""){
-            getUserId().then(id=> {
             const userData = {
                 password: password,
                 newPassword: newPassword,
-                id: id
+                id: localStorage.getItem("userId")
             }
 
             postMethod(userData, "/api/updatePass").then(res => {
@@ -35,7 +34,6 @@ export default function updatePassSection(){//! ^^ almost the same as the Update
                 section.append(message)
                 setTimeout(() => {message.remove()}, 5000)
             })
-        })
         }else{
             //blablabla
         }

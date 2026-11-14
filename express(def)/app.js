@@ -7,7 +7,7 @@ const { createUser, findUser, getPosts,
    addPost, deletePost, updatePost, starPost,
     getUser, deleteUser, updateUser, updatePass,
       addComment, getUsers, spawnUsers, deleteComment,
-        isAdmin, updateRole, getUserByUsername} = require('./users');
+        isAdmin, updateRole, getUserByUsername, getUsersInfo} = require('./users');
 const cookieParser = require("cookie-parser")
 const fs = require('fs/promises');
 
@@ -72,7 +72,7 @@ app.get('/write', async (req, res) => {
 
 
 //register
-app.post('/api/register', async (req, res) => {//V
+app.post('/api/register', async (req, res) => {
   const { username, password } = req.body
   if (await findUser(username))
     return res.status(400).json({ message: "User already exists" })
@@ -92,7 +92,7 @@ function isValidValue(value){
 
 
 //login
-app.post('/api/login', async (req, res) => { //V
+app.post('/api/login', async (req, res) => { 
   const { username, password } = req.body
   const user = await findUser(username)
   if (!user) return res.status(401).json({ message: 'Invalid credentials' })
@@ -137,7 +137,7 @@ function authMiddleware(req, res, next) {
   if (!token) return res.sendStatus(401).json({ message: "No access token" })
  
   jwt.verify(token, ACCESS_SECRET, (err, user) => {
-    if (err) return res.status(403).json({message:"Invalid token"})
+    if (err) return res.status(400).json({message:"Invalid token"})
     req.user = user
     next()
   })
@@ -173,12 +173,27 @@ app.post("/api/isAuth", (req, res) => {
 
 
 //admin
-app.get("/api/isAdmin", authMiddleware, async (req,res) =>{//!!!
+async function adminMiddleware(req,res,next){
+  const isAdminReq = await isAdmin(req.user.id)
+  if(!isAdminReq) return res.status(403).json({message:"Forbidden"})
+  next()
+}
+app.get("/api/isAdmin", authMiddleware, async (req,res) =>{
   const check = await isAdmin(req.user.id)
   res.json({isAdmin: check})
 })
+app.get("/api/getUsers", authMiddleware, adminMiddleware, async(req,res) => {
+  const users = await getUsersInfo()
+  return res.status(200).json(users)
+})
 
-
+async function validationMiddleware(req,res,next){
+ const isAdminReq = await isAdmin(req.user.id)
+  if(req.user.id !== req.body.id && !isAdminReq) {
+    return res.status(403).json({message: "Forbidden"})
+  }
+  next()
+}
 
 //user
 app.post("/api/user", authMiddleware, async (req, res) => {
@@ -193,31 +208,31 @@ app.post("/api/userByUsername", authMiddleware, async(req,res)=>{
   return res.status(200).json(user)
 })
 
-app.get("/api/userId", authMiddleware, (req,res) => {//!!!
+app.get("/api/userId", authMiddleware, (req,res) => {
   res.json({ id: req.user.id })
 })
 
-app.post("/api/deleteUser", authMiddleware, async (req, res) => {
-  const isDeleted = await deleteUser(req.body.id)//!!!
-  if(!isDeleted) return res.status(403).json({message: "User was not deleted"})
+app.post("/api/deleteUser", authMiddleware, validationMiddleware, async (req, res) => {
+  const isDeleted = await deleteUser(req.body.id)
+  if(!isDeleted) return res.status(500).json({message: "User was not deleted"})
   return res.status(200).json({message: "User was deleted"})
 })
 
-app.post("/api/updateUser", authMiddleware, async (req, res) => {//!!!
+app.post("/api/updateUser", authMiddleware, validationMiddleware, async (req, res) => {
   const {id, newUsername, newBio} = req.body
-  if(!isValidValue(newUsername)) return res.status(403).json({message: "Invalid user data"})
+  if(!isValidValue(newUsername)) return res.status(400).json({message: "Invalid user data"})
 
   const isUpdated = await updateUser({id: id, newUsername: newUsername, newBio: newBio}) 
   if(isUpdated) return res.status(200).json({message: "User was updated"})
-  else return res.status(400).json({message: "User was not updated"})
+  else return res.status(500).json({message: "User was not updated"})
 })
 
-app.post("/api/updatePass", authMiddleware, async (req,res) => {
-  const { id, password, newPassword } = req.body//!!!
+app.post("/api/updatePass", authMiddleware, validationMiddleware, async (req,res) => {
+  const { id, password, newPassword } = req.body
   const user = await getUser(id)
   if (!user) return res.status(401).json({ message: "User not found" })
  
-  const isUpdated = await updatePass(id, newPassword, password)//!!!
+  const isUpdated = await updatePass(id, newPassword, password)
   if(isUpdated) return res.status(200).json({message: "Password was changed"})
     else return res.status(403).json({message: "Password was not changed"})
 })
@@ -235,7 +250,6 @@ app.get("/api/posts", authMiddleware, async (req, res) => {
 
 app.post("/api/addPost", authMiddleware, async (req, res) => {
   const { authorId, title, description, date } = req.body
-  //const post = {author: author, title: title, description: description, date: date}
   const isAdded = await addPost({authorId: authorId, title: title, description: description, date: date})
   if(isAdded) return res.status(200).json({message: "Post was added"})
     else return res.status(403).json({message: "Post was not added"})
@@ -255,7 +269,7 @@ app.post("/api/updatePost", authMiddleware, async (req,res) => {
 })
 
 app.post("/api/starPost", authMiddleware, async (req,res) => {
-  const { postID, id, stars} = req.body//!!!
+  const { postID, id, stars} = req.body
   const isStarred = await starPost(postID, id, stars)
   if(isStarred) return res.status(200).json({message:"Post stars were updated"})
     else return res.status(403).json({message: "Post stars were not updated"})
@@ -263,7 +277,7 @@ app.post("/api/starPost", authMiddleware, async (req,res) => {
 
 app.post("/api/comment", authMiddleware, async(req,res) =>{
   const {postID, text, authorId, date} = req.body
-  const isAdded = await addComment(postID, authorId, date, text)//!!!
+  const isAdded = await addComment(postID, authorId, date, text)
   if(isAdded) return res.status(200).json({message: "Comment was added"})
     else return res.status(403).json({message: "Comment was not added"})
 })

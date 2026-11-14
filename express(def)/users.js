@@ -236,10 +236,23 @@ async function updateRole(userID, adminID, newRole){
   users[userIndex].role = newRole
   return true
 }
+async function getUsersInfo(){
+  const tempUsers = []
+  for (const user of users) {
+    tempUsers.push({
+      username: user.username,
+      id: user.id,
+      bio: user.bio,
+      starredPosts: user.starredPosts,
+      posts: user.posts
+    })
+  }
+  return tempUsers
+}
 
  
 module.exports = { createUser, findUser, getPosts, 
    addPost, deletePost, updatePost, starPost,
     getUser, deleteUser, updateUser, updatePass, addComment,
       getUsers, spawnUsers, deleteComment, isAdmin,
-        updateRole, getUserByUsername };
+        updateRole, getUserByUsername, getUsersInfo };

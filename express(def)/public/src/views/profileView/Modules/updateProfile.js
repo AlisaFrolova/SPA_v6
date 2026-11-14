@@ -15,11 +15,10 @@ export default function updateProfileSection(){
     const username = document.querySelector(".usernameInput").value
     const bio = document.querySelector(".bioInput").value
 
-    getUserId().then(id => {
         const userData = {
             newUsername: username,
             newBio: bio,
-            id: id
+            id: localStorage.getItem("userId")
         }
 
         postMethod(userData, "/api/updateUser").then(res => {
@@ -34,7 +33,6 @@ export default function updateProfileSection(){
             section.append(message)
             setTimeout(() => {message.remove()}, 5000)
         })
-    })
  })
  inputContainer.append(submitButton)
 

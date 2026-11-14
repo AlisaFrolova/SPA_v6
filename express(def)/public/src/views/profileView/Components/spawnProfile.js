@@ -8,6 +8,7 @@ export default function spawnProfile(id){
     const errorText = createEl("p", "User was not found", "errorText")
 
     getUser(id).then(user => {
+        localStorage.setItem("userId", id)
         if(!user){ profile.append(errorText); return}
         profile.append(createEl("p", user.username, "usernameText"))
         profile.append(createEl("p", id, "idText"))
