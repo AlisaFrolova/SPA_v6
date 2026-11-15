@@ -1,4 +1,4 @@
-import getPosts from "../Components/getPosts.js"
+import { getPosts } from "../../../tools/PostTools/PostTools.js"
 import spawnPosts from "../Components/spawnPosts.js"
 import { createEl, spawnNav } from "../../../tools/DOM_tools.js"
 

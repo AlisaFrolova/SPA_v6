@@ -249,10 +249,22 @@ async function getUsersInfo(){
   }
   return tempUsers
 }
+async function updateUsersPass(userId, adminId, newPass){
+  const isAdminReq = await isAdmin(adminId)
+  if(!isAdminReq) return false
+
+  const userIndex = getUserIndex(userId, "id")
+  if(userIndex === false) return false
+
+  const hashed = await bcrypt.hash(newPass, 10)
+  users[userIndex].password = hashed
+  return true
+}
 
  
 module.exports = { createUser, findUser, getPosts, 
    addPost, deletePost, updatePost, starPost,
     getUser, deleteUser, updateUser, updatePass, addComment,
       getUsers, spawnUsers, deleteComment, isAdmin,
-        updateRole, getUserByUsername, getUsersInfo };
+        updateRole, getUserByUsername, getUsersInfo,
+          updateUsersPass };

@@ -1,6 +1,6 @@
 import { createEl } from "../../../tools/DOM_tools.js"
 import { getValueFromLocalStorage } from "../../../tools/DataTools.js"
-import getPosts from "./getPosts.js"
+import { getPosts } from "../../../tools/PostTools/PostTools.js"
 import spawnPosts from "./spawnPosts.js"
 
 

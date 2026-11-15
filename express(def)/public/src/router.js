@@ -11,12 +11,12 @@ import spawnVideoArticle from "./views/videoView/Modules/videoArticleModule.js"
 import tokenData from "./tokenModule.js"
 import communityView from "./views/communityView/communityView.js"
 import createNewPost from "./views/communityView/Modules/createNewPost.js"
-import getPost from "./views/communityView/Modules/postModule.js"
+import { getPost } from "./tools/PostTools/PostTools.js"
 import spawnUpdatePostSection from "./views/communityView/Modules/updatePost.js"
 import profileView from "./views/profileView/profileView.js"
 import updateProfileSection from "./views/profileView/Modules/updateProfile.js"
 import updatePassSection from "./views/profileView/Modules/updatePassword.js"
-import spawnAdminMenu from "./adminMenu.js"
+import spawnAdminMenu from "./adminMenu/adminMenu.js"
 import { spawnLogoutButton } from "./tools/authTools.js"
 import { isAdmin } from "./tools/API_tools.js"
 
@@ -31,7 +31,7 @@ const routes = {
     "/video/article": spawnVideoArticle,
     "/community": communityView,
     "/community/create": createNewPost,
-    "/community/post": getPost,
+    "/post": getPost,
     "/community/update": spawnUpdatePostSection,
     "/profile": profileView,
     "/profile/update": updateProfileSection,
@@ -85,6 +85,8 @@ function spawnHeaderAndLogoutButton(){//--
     isAdmin().then(res => {
         if(res){
             spawnAdminMenu()
+            const menu = document.querySelector(".adminMenu")
+            if(menu) menu.remove()
         }
     })
 }

@@ -1,47 +1,13 @@
 [
   {
-    "username": "sssss",
-    "id": "65575332",
-    "password": "$2b$10$na.0vC9wqmWWB7kIuWWOyOu7o34ryjOKnRylCVzM7joeNri0urN56",
-    "bio": "No bio yet...",
-    "role": "user",
-    "starredPosts": [],
-    "posts": []
-  },
-  {
     "username": "wra1th",
-    "id": "07871356",
-    "password": "$2b$10$ZJkscDxoUktp.o.fkzj3SOey4WNg8bA3M0SCwfiWgV3RG.JW1Srai",
-    "bio": "^",
+    "id": "17443702",
+    "password": "$2b$10$L0PHYRC0FEW0dk2KJV1Lf.KHcO63T3kE3F7XW3wnhyKVeJKBV6sEy",
+    "bio": "No bio yet...",
     "role": "admin",
-    "starredPosts": [],
-    "posts": []
-  },
-  {
-    "username": "wra11tthh",
-    "id": "21148301",
-    "password": "$2b$10$jAOFzZuL0neeT9aoyO/R.OSzge6sustZ5IG7AINxGiaujeVRyvLpS",
-    "bio": "No bio yet...",
-    "role": "user",
-    "starredPosts": [],
-    "posts": []
-  },
-  {
-    "username": "JohnWick",
-    "id": "35360263",
-    "password": "$2b$10$TcLdixwpAj6I/mcLzxjtuedcPYSPm8NFz4hhQmLn0lazYwVhqKiR2",
-    "bio": "No bio yet...",
-    "role": "user",
-    "starredPosts": [],
-    "posts": []
-  },
-  {
-    "username": "qwerty",
-    "id": "88178704",
-    "password": "$2b$10$9Yb2pRzntzZL97YkXWJeFevDXAhMKDq0iJDz6QyhQI1sGEPVq14om",
-    "bio": "No bio yet...",
-    "role": "user",
-    "starredPosts": [],
+    "starredPosts": [
+      "437326"
+    ],
     "posts": []
   }
 ]

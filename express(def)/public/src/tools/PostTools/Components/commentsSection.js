@@ -1,7 +1,7 @@
-import getPosts from "./getPosts.js"
-import { getValueFromLocalStorage, getCurrentDay } from "../../../tools/DataTools.js"
-import { createEl, createInputBlock } from "../../../tools/DOM_tools.js"
-import { postMethod, getUserId, getUser } from "../../../tools/API_tools.js"
+import { createEl, createInputBlock } from "../../DOM_tools.js"
+import { postMethod, isAdmin, getUserId, getUser } from "../../API_tools.js"
+import { getValueFromLocalStorage, getCurrentDay } from "../../DataTools.js"
+import { getPosts } from "../PostTools.js"
 
 export default function spawnCommentsSection(){
     const commentsSection = createEl("section", "", "commentsSection")
@@ -17,19 +17,24 @@ export default function spawnCommentsSection(){
                 if(parseInt(el.id) === parseInt(localStorage.getItem("articleID"))){
                     const index = posts.indexOf(el)
                     for (const comment of posts[index].comments) {
-                        const newComment = createComment(comment)
-                        if(comment.author === user.username || posts[index].author === user.username){
-                            const deleteButton = createEl("button", "Delete", "button")
-                            deleteButton.addEventListener("click", () => {
-                                postMethod({commentID: comment.id, postID: posts[index].id}, "/api/deleteComment").then(res => {
-                                    if(res){
-                                        newComment.remove()
-                                        getPosts()
-                                    }
+                        isAdmin().then(isUserAdmin => {
+                            if(comment.author === user.username ||
+                                posts[index].author === user.username ||
+                                    isUserAdmin){
+                                const deleteButton = createEl("button", "Delete", "button")
+                                deleteButton.addEventListener("click", () => {
+                                    postMethod({commentID: comment.id, postID: posts[index].id, id: user.id}, "/api/deleteComment").then(res => {
+                                        if(res){
+                                            newComment.remove()
+                                            getPosts()
+                                        }
+                                    })
                                 })
-                            })
-                            newComment.append(deleteButton)
-                        }
+                                newComment.append(deleteButton)
+                            }
+                        })
+                        const newComment = createComment(comment)
+                        
                         commentsContainer.append(newComment)
                     }
                 }

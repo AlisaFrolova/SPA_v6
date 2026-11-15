@@ -7,7 +7,8 @@ const { createUser, findUser, getPosts,
    addPost, deletePost, updatePost, starPost,
     getUser, deleteUser, updateUser, updatePass,
       addComment, getUsers, spawnUsers, deleteComment,
-        isAdmin, updateRole, getUserByUsername, getUsersInfo} = require('./users');
+        isAdmin, updateRole, getUserByUsername, getUsersInfo,
+          updateUsersPass} = require('./users');
 const cookieParser = require("cookie-parser")
 const fs = require('fs/promises');
 
@@ -186,6 +187,12 @@ app.get("/api/getUsers", authMiddleware, adminMiddleware, async(req,res) => {
   const users = await getUsersInfo()
   return res.status(200).json(users)
 })
+app.post("/api/updateUsersPass", authMiddleware, adminMiddleware, async(req,res) => {
+  const {userId, newPass} = req.body
+  const isUpdated = await updateUsersPass(userId, req.user.id, newPass)
+  if(isUpdated) return res.status(200).json({message: "Users password was updated"})
+    else return res.status(400).json({message: "Users password was not updated"})
+})//
 
 async function validationMiddleware(req,res,next){
  const isAdminReq = await isAdmin(req.user.id)
@@ -255,9 +262,9 @@ app.post("/api/addPost", authMiddleware, async (req, res) => {
     else return res.status(403).json({message: "Post was not added"})
 })
 
-app.post("/api/deletePost", authMiddleware, async (req,res) => {
+app.post("/api/deletePost", authMiddleware, validationMiddleware, async (req,res) => {
   const {postID} = req.body
-  await deletePost(postID)//where the hell is validation
+  await deletePost(postID)
   return res.status(200).json({message: "Post was deleted"})
 })
 
@@ -282,7 +289,7 @@ app.post("/api/comment", authMiddleware, async(req,res) =>{
     else return res.status(403).json({message: "Comment was not added"})
 })
 
-app.post("/api/deleteComment", authMiddleware, async  (req, res) => {
+app.post("/api/deleteComment", authMiddleware, validationMiddleware, async  (req, res) => {
   const { commentID, postID } = req.body
   const isDeleted = await deleteComment(commentID, postID)
   if(isDeleted) return res.status(200).json({message: "Comment was deleted"})

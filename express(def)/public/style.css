@@ -867,7 +867,7 @@ blue-10: #2E3A92 */
     color:#E2E8F0;
     padding: 20px;
 }
-.adminMenu > .header{
+.adminMenu .header{
     width: 100%;
 }
 .userCard, .userInfoContainer{

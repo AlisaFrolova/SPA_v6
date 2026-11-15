@@ -1,10 +1,10 @@
 import { createEl, createInputBlock } from "../../../tools/DOM_tools.js"
-import { postMethod, getUserId } from "../../../tools/API_tools.js"
+import { postMethod } from "../../../tools/API_tools.js"
 
 export default function updateProfileSection(){
  const section = createEl("section", "", "updateSection")
  
- section.append(createEl("h1", "Update Profile", "header"))
+ section.append(createEl("h2", "Update Profile", "header"))
 
  const inputContainer = createEl("div", "", "inputSection")
  inputContainer.append(createInputBlock("username", "Username: "))

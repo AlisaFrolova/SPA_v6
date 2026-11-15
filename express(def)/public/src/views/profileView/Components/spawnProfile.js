@@ -1,4 +1,4 @@
-import createPost from "../../communityView/Components/createPost.js"
+import { createPost } from "../../../tools/PostTools/PostTools.js"
 import { getUser } from "../../../tools/API_tools.js"
 import { createEl } from "../../../tools/DOM_tools.js"
 
