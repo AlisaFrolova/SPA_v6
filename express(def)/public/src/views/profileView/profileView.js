@@ -33,6 +33,8 @@ export default function profileView(){
     section.append(createEl("p", "Your profile:", "profileText"))
 
     getUserId().then(id => {
+        localStorage.setItem("userId", id)
+
         section.append(spawnProfile(id))
 
         const container = createEl("div", "", "buttonsContainer")

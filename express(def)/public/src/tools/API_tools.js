@@ -1,5 +1,6 @@
 import tokenData from "../tokenModule.js"
 import {logout} from "./authTools.js"
+import { createEl } from "./DOM_tools.js"
 
 export function postMethod(data, path){
     return tokenData.refreshAccessToken().then(() => {
@@ -12,7 +13,11 @@ export function postMethod(data, path){
             if(res.status === 200){
                 fetch("/write", { method: 'GET', headers: { 'Content-Type': 'application/json' }})
                 return true
-            }else {logout(); return false }
+            }
+            if(res.status === 401) {logout(); return false }
+            if(res.status === 400 || res.status === 500 || res.status === 403) {
+                //blabla
+            }
         })
     })
 }

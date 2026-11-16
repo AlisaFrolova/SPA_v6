@@ -1,12 +1,59 @@
 [
   {
     "username": "wra1th",
-    "id": "17443702",
-    "password": "$2b$10$L0PHYRC0FEW0dk2KJV1Lf.KHcO63T3kE3F7XW3wnhyKVeJKBV6sEy",
-    "bio": "No bio yet...",
+    "id": "47177440",
+    "password": "$2b$10$z/fenhXbZPCAiNFaO1NF5uS2gdEWhzbs9oFbKFV88RQHzEaXymugm",
+    "bio": "12345",
     "role": "admin",
+    "starredPosts": [],
+    "posts": []
+  },
+  {
+    "username": "wra11tthh",
+    "id": "65545760",
+    "password": "$2b$10$Ma.9rRib0Wj7K8/jm0Gh6u6OR.QtmwSxHqy5kchD1jFHq.g6mhuMK",
+    "bio": "blablabla",
+    "role": "user",
+    "starredPosts": [],
+    "posts": [
+      {
+        "authorId": "65545760",
+        "title": "qqqqq",
+        "description": "qqqqqq",
+        "date": "2026-11-16 ",
+        "author": "wra11tthh",
+        "id": "267472",
+        "stars": 1,
+        "comments": [
+          {
+            "author": "appbreaker",
+            "date": "2026-11-16 ",
+            "text": "dddldlddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "id": "458707"
+          }
+        ]
+      },
+      {
+        "authorId": "65545760",
+        "title": "123",
+        "description": "321",
+        "date": "2026-11-16 ",
+        "author": "wra11tthh",
+        "id": "272750",
+        "stars": 0,
+        "comments": []
+      }
+    ]
+  },
+  {
+    "username": "appbreaker",
+    "id": "33436873",
+    "password": "$2b$10$t7xEkTyRS2gsaRbqap/Taesmw9cwL2VdwN5gYvp99./Dl47.ggfEq",
+    "bio": "No bio yet...",
+    "role": "user",
     "starredPosts": [
-      "437326"
+      "267472",
+      "152157"
     ],
     "posts": []
   }

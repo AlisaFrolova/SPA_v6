@@ -78,13 +78,13 @@ app.post('/api/register', async (req, res) => {
   if (await findUser(username))
     return res.status(400).json({ message: "User already exists" })
  
-  if(isValidValue(username) && isValidValue(password)){
+  if(isValidCredentials(username) && isValidCredentials(password)){
     await createUser(username, password)
     res.json({ message: "User registered" })
   }else return res.status(400).json({ message: "Invalid enter" })
 })
 
-function isValidValue(value){
+function isValidCredentials(value){
   if(value.indexOf(" ") !== -1 || value.length < 5 || value.length > 12){
     return false
   }else return true
@@ -189,6 +189,8 @@ app.get("/api/getUsers", authMiddleware, adminMiddleware, async(req,res) => {
 })
 app.post("/api/updateUsersPass", authMiddleware, adminMiddleware, async(req,res) => {
   const {userId, newPass} = req.body
+  if(!isValidCredentials(newPass)) return res.status(400).json({message: "Invalid password"})
+
   const isUpdated = await updateUsersPass(userId, req.user.id, newPass)
   if(isUpdated) return res.status(200).json({message: "Users password was updated"})
     else return res.status(400).json({message: "Users password was not updated"})
@@ -227,7 +229,7 @@ app.post("/api/deleteUser", authMiddleware, validationMiddleware, async (req, re
 
 app.post("/api/updateUser", authMiddleware, validationMiddleware, async (req, res) => {
   const {id, newUsername, newBio} = req.body
-  if(!isValidValue(newUsername)) return res.status(400).json({message: "Invalid user data"})
+  if(!isValidCredentials(newUsername) || !isValidData(newBio)) return res.status(400).json({message: "Invalid user data"})
 
   const isUpdated = await updateUser({id: id, newUsername: newUsername, newBio: newBio}) 
   if(isUpdated) return res.status(200).json({message: "User was updated"})
@@ -236,6 +238,8 @@ app.post("/api/updateUser", authMiddleware, validationMiddleware, async (req, re
 
 app.post("/api/updatePass", authMiddleware, validationMiddleware, async (req,res) => {
   const { id, password, newPassword } = req.body
+  if(!isValidCredentials(newPassword)) return res.status(400).json({message: "Invalid password"})
+
   const user = await getUser(id)
   if (!user) return res.status(401).json({ message: "User not found" })
  
@@ -248,6 +252,11 @@ app.post("/api/updatePass", authMiddleware, validationMiddleware, async (req,res
 
 
 //community-page
+function isValidData(data){
+  if(data.length > 1 && data.length < 450) return true
+  else return false
+}
+
 app.get("/api/posts", authMiddleware, async (req, res) => {
   const posts = await getPosts()
   if(!posts) return res.status(500).json({message:"no posts"}) //^^
@@ -257,6 +266,7 @@ app.get("/api/posts", authMiddleware, async (req, res) => {
 
 app.post("/api/addPost", authMiddleware, async (req, res) => {
   const { authorId, title, description, date } = req.body
+  if(!isValidData(title) || !isValidData(description)) return res.status(400).json({message: "Invalid data"})
   const isAdded = await addPost({authorId: authorId, title: title, description: description, date: date})
   if(isAdded) return res.status(200).json({message: "Post was added"})
     else return res.status(403).json({message: "Post was not added"})
@@ -270,6 +280,8 @@ app.post("/api/deletePost", authMiddleware, validationMiddleware, async (req,res
 
 app.post("/api/updatePost", authMiddleware, async (req,res) => {
   const { authorId, title, description, id } = req.body 
+  if(!isValidData(title) || !isValidData(description)) return res.status(400).json({message: "Invalid data"})
+  
   const isUpdated = await updatePost(title, description, authorId, id)//! add some validation
   if(isUpdated) return res.status(200).json({message: "Post was updated"})
     else return res.status(403).json({message: "Post was not updated"})
@@ -284,6 +296,8 @@ app.post("/api/starPost", authMiddleware, async (req,res) => {
 
 app.post("/api/comment", authMiddleware, async(req,res) =>{
   const {postID, text, authorId, date} = req.body
+  if(!isValidData(text)) return res.status(400).json({message: "Invalid data"})
+
   const isAdded = await addComment(postID, authorId, date, text)
   if(isAdded) return res.status(200).json({message: "Comment was added"})
     else return res.status(403).json({message: "Comment was not added"})

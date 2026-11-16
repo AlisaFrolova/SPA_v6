@@ -57,6 +57,7 @@ function createRangeInput(type){
     tempInput.name = `${type}Input`
 
     const minAndMax = findMinAndMax(type)
+    tempInput.value = minAndMax["min"]
     tempInput.min = minAndMax["min"]
     tempInput.max = minAndMax["max"]
 

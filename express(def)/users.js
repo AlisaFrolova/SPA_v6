@@ -51,6 +51,7 @@ async function findUser(username) {
 async function deleteUser(id){
   const index = getUserIndex(id, "id")
   if(index === false) return false
+
   users.splice(index, 1)
   return true
 }
@@ -60,9 +61,8 @@ async function updateUser(userData){
   if(index === false) return false
   
   const newIndex = getUserIndex(userData.newUsername, "username")
-  if(newIndex !== false) return false
+  if(newIndex !== false && users[index].username !== userData.newUsername) return false
 
-  console.log(" updateUser in users completed!")
   users[index].username = userData.newUsername
   if(userData.newBio === "") userData.newBio = "No bio yet..."
   users[index].bio = userData.newBio
