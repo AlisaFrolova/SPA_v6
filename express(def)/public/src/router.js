@@ -18,7 +18,7 @@ import updateProfileSection from "./views/profileView/Modules/updateProfile.js"
 import updatePassSection from "./views/profileView/Modules/updatePassword.js"
 import spawnAdminMenu from "./adminMenu/adminMenu.js"
 import { spawnLogoutButton } from "./tools/authTools.js"
-import { isAdmin } from "./tools/API_tools.js"
+import { getMethod } from "./tools/API_tools.js"
 
 const routes = {
     "/": homeView,
@@ -82,8 +82,8 @@ function spawnHeaderAndLogoutButton(){//--
     container.append(spawnLogoutButton())
     document.querySelector(".header").append(container)//-> 
 
-    isAdmin().then(res => {
-        if(res){
+    getMethod("/api/isAdmin").then(res => {
+        if(res.isAdmin){
             spawnAdminMenu()
             const menu = document.querySelector(".adminMenu")
             if(menu) menu.remove()

@@ -3,7 +3,7 @@ import { createEl } from "../../../tools/DOM_tools.js"
 import { getValueFromLocalStorage } from "../../../tools/DataTools.js"
 
 export default function spawnSortMenu(cardsContainer){
-    const sortMenu = createEl("section", "", "newsSortMenu")
+    const sortMenu = createEl("section", "", "section")
 
     sortMenu.append(createEl("h2", "Sort by Date", "text"))
 

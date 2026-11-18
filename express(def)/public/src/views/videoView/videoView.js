@@ -4,7 +4,7 @@ import { spawnSearchBox } from "../../tools/DOM_tools.js"
 
 export default function videoView(){
     const saveTheme = localStorage.getItem("videoTheme")
-    const section = createEl("section", "", "videosSection")
+    const section = createEl("section", "", "mainSection")
 
     section.append(createEl("h1", "Videos", "header"))
 

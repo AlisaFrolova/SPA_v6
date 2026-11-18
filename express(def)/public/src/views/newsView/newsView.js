@@ -5,7 +5,7 @@ export default function newsView(){
     const app = document.querySelector('#app')
 
     //section
-    const section = createEl("section", "", "newsSection")
+    const section = createEl("section", "", "mainSection")
     app.append(section)
 
     section.append(createEl("h1", "News", "header"))

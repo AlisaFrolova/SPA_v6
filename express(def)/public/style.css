@@ -4,15 +4,32 @@
     box-sizing: border-box;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #E2E8F0;
+    font-size: 1rem;
 }
 #app{
     position: relative;
     z-index: 10;
     min-height: 100vh;
 }
-section{
-    min-height: 100%;
+
+.mainSection, .section, .article, .asteroidCard,
+.APODSection, .asteroidSortMenu, .sortBlock, .sortContainer,
+.buttonContainer, .previewCardsContainer, .videoArticle,
+.profileInfoContainer, .buttonsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background: #0d1117;
+}
+.mainSection{
+    width: 100%;
+    min-height: 400px;
+}
+.section, .article{
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
 }
 
 
@@ -30,8 +47,8 @@ section{
 
 /* logo and name */
 .logo{
-    width: 10vw;
-    height: 100%;
+    width: 100px;
+    height: 100px;
     background: url("images/logo_dark.jpg");
     background-size: cover;
 }
@@ -43,6 +60,27 @@ section{
     background-size: contain;
     background-repeat: no-repeat;
 }
+#app > .mainHeader{
+    position: sticky;
+    z-index: 30;
+    top: 0;
+    scrollbar-color: rgba(128, 128, 128, 0.5) rgb(13, 17, 23);
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 16px 20px;
+    flex-wrap: wrap;
+    gap: 24px;
+    color: rgb(226, 232, 240);
+    border-bottom: 0.067px solid rgb(35, 43, 59);
+    background-origin: padding-box;
+    background-color: (13, 17, 23, 0.85);
+    backdrop-filter: blur(12px);
+    background-attachment:scroll;
+    background-clip:border-box;
+}
 
 /* black-60: #0d1117
 white-30: #E2E8F0
@@ -51,7 +89,7 @@ blue-10: #2E3A92 */
 /* header */
 .header, .footer{
     padding: 5px;
-    width: 100vw;
+    width: 100%;
     height: 20vh;
     display:flex;
     gap: 5vw;
@@ -197,9 +235,6 @@ blue-10: #2E3A92 */
     background-position: center;
     width: 100%;
     min-height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 .APODSection > p{
     font-size: 4rem;
@@ -211,21 +246,6 @@ blue-10: #2E3A92 */
 }
 
 /* Asteroids */
-.asteroidSection{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 400px;
-    background: #0d1117;
-}
-.asteroidSection > h2{
-    background-image: url("https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000720/GSFC_20171208_Archive_e000720~orig.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
 .asteroidContainer{
     display: flex;
     align-items: center;
@@ -239,13 +259,8 @@ blue-10: #2E3A92 */
     background-repeat: no-repeat;
 }
 .asteroidCard{
-    display: flex;
-    flex-direction: column;
     gap: 1vw;
-    align-items: center;
-    justify-content: center;
     box-shadow: 0px 1px 8px 2px #2E3A92;
-    background: #0d1117;
     color:#ced0d3;
     width: 25vw;
     height: 50vh;
@@ -300,14 +315,9 @@ blue-10: #2E3A92 */
 }
 
 .asteroidSortMenu{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 30vw;
     border: 3px solid #2E3A92;
-    background: #0d1117;
     font-size: 1.5rem;
     gap: 20px;
     padding: 30px;
@@ -323,10 +333,6 @@ blue-10: #2E3A92 */
 }
 .sortBlock, .sortContainer{
     width: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 .sortContainer{
     font-size: 1.3rem;
@@ -353,25 +359,6 @@ blue-10: #2E3A92 */
 }
 
 /* news */
-.newsSection{
-    width: 100%;
-    height: auto;
-}
-.newsSortMenu > h2{
-    color: #E2E8F0;
-    font-size: 2.3rem;
-}
-.newsSortMenu{
-    padding: 30px;
-    width: 100%;
-    height: auto;
-    background: #0d1117;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
 .inputDateContainer{
     display: flex;
     justify-content: center;
@@ -387,12 +374,6 @@ blue-10: #2E3A92 */
     font-size: 1.9rem;
 }
 .article{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
-    justify-content: center;
     background-color: #0d1117;
     border: 3px solid #2E3A92;
     border-top: none;
@@ -474,13 +455,8 @@ blue-10: #2E3A92 */
 }
 .previewCardsContainer{
     min-height: 100px;
-    background: #0d1117;
     width: 100%;
     height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 /* Auth */
@@ -536,14 +512,14 @@ blue-10: #2E3A92 */
     text-align: center;
 }
 .loginButton, .logoutButton, .adminMenuButton{
-    align-self: center;
     border-radius: 8px;
-    padding: 8px 24px;
+    padding: 0px 20px;
     cursor: pointer;
-    color:#2E3A92;
+    color: rgb(226, 232, 240);
     background: #0d1117;
-    border: 3px solid #2E3A92;
+    border: 0.0667px solid rgb(35, 43, 59);
     transition: color 0.3s;
+    background-origin: padding-box;
 }
 .logoutButton, .adminMenuButton{
     align-self: flex-start;
@@ -552,11 +528,7 @@ blue-10: #2E3A92 */
     color:#ced0d3;
 }
 .buttonContainer{
-    display: flex;
-    flex-direction: column;
     gap: 10px;
-    justify-content: center;
-    align-items: center;
 }
 
 /* video */
@@ -564,13 +536,8 @@ blue-10: #2E3A92 */
     background: #0d1117;
 }
 .videoArticle{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding: 50px;
     padding-top: 0;
-    background: #0d1117;
     gap: 30px;
     min-height: 80vh;
 }
@@ -834,10 +801,6 @@ blue-10: #2E3A92 */
     font-size: 1.5rem;
 }
 .profileInfoContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 20px;
     font-size: 3rem;
 }
@@ -869,17 +832,13 @@ blue-10: #2E3A92 */
     margin: 0 auto;
 }
 .buttonsContainer{
-    display: flex;
-    flex-direction: column;
     gap: 20px;
-    justify-content: center;
-    align-items: center;
 }
 
 /* admin menu */
 .adminMenu{
     position: absolute;
-    z-index: 30;
+    z-index: 40;
     display: flex;
     flex-direction: column;
     align-items: center;

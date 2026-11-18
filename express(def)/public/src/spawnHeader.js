@@ -3,6 +3,7 @@ import { createLink } from "./tools/DOM_tools.js"
 
 export default function spawnHeader(){
     const header = createEl("header", "", "header")
+    header.classList.add("mainHeader")
 
     const logo = createLink("", "/")
     logo.classList.add("logo")

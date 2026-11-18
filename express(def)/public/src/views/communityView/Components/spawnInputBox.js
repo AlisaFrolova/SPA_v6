@@ -1,5 +1,5 @@
 import { createEl, createInputBlock } from "../../../tools/DOM_tools.js"
-import { getUserId } from "../../../tools/API_tools.js"
+import { getMethod } from "../../../tools/API_tools.js"
 
 export default function spawnInputBox(func){ 
     const inputSection = createEl("section", "", "inputSection")
@@ -13,9 +13,10 @@ export default function spawnInputBox(func){
         const description = document.querySelector(".descriptionInput").value
 
         if(title !== "" && description !== ""){
-            getUserId().then(id => {
+            getMethod("/api/userId").then(data => {
+                if(!data) return
                 const post = {
-                    authorId: id,
+                    authorId: data.id,
                     title: title,
                     description: description
                 }

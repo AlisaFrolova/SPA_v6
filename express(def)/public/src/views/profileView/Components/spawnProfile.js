@@ -1,5 +1,5 @@
 import { createPost } from "../../../tools/PostTools/PostTools.js"
-import { getUser, getUserId } from "../../../tools/API_tools.js"
+import { getUser, getMethod } from "../../../tools/API_tools.js"
 import { createEl, createInputBlock } from "../../../tools/DOM_tools.js"
 
 export default function spawnProfile(id){
@@ -10,8 +10,9 @@ export default function spawnProfile(id){
     const avatarContainer = createEl("div", "", "avatarContainer")
     avatarContainer.append(createEl("img", "", "avatar"))
     
-        getUserId().then(currentId => {
-            if(currentId === id){
+        getMethod("/api/userId").then(res => {
+            if(!res) return
+            if(res.id === id){
                 const updateButton = createEl("button", "Update", "avatarUpdateButton")
                 updateButton.addEventListener("click", () => {
                     profileInfoContainer.append(createInputBlock("avatar", "Choose a profile picture"))
@@ -48,10 +49,10 @@ export default function spawnProfile(id){
         profileInfoContainer.append(createEl("p", user.bio, "bioText"))
 
         const postsContainer = createEl("div", "", "postsContainer")
-        getUserId().then(currentId => {
+        getMethod("/api/userId").then(res => {
             if(user.posts){
                 for (const post of user.posts) {
-                    postsContainer.append(createPost(currentId, post))
+                    postsContainer.append(createPost(res.id, post))
                 }
                 const postsJSON = JSON.stringify(user.posts)
                 localStorage.setItem("posts", postsJSON)

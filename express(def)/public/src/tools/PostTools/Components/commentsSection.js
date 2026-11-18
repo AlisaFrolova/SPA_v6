@@ -1,5 +1,5 @@
 import { createEl, createInputBlock } from "../../DOM_tools.js"
-import { postMethod, isAdmin, getUserId, getUser } from "../../API_tools.js"
+import { postMethod, getMethod, getUser } from "../../API_tools.js"
 import { getValueFromLocalStorage, getCurrentDay } from "../../DataTools.js"
 import { getPosts } from "../PostTools.js"
 
@@ -10,17 +10,17 @@ export default function spawnCommentsSection(){
 
     const commentsContainer = createEl("div", "", "commentsContainer")
 
-    getUserId().then(id => {
-        getUser(id).then(user => {
+    getMethod("/api/userId").then(userId => {
+        getUser(userId.id).then(user => {
             const posts = getValueFromLocalStorage("posts")
             for (let el of posts) {
                 if(parseInt(el.id) === parseInt(localStorage.getItem("articleID"))){
                     const index = posts.indexOf(el)
                     for (const comment of posts[index].comments) {
-                        isAdmin().then(isUserAdmin => {
+                        getMethod("/api/isAdmin").then(res => {
                             if(comment.author === user.username ||
                                 posts[index].author === user.username ||
-                                    isUserAdmin){
+                                    res.isAdmin){
                                 const deleteButton = createEl("button", "Delete", "button")
                                 deleteButton.addEventListener("click", () => {
                                     postMethod({commentID: comment.id, postID: posts[index].id, id: user.id}, "/api/deleteComment").then(res => {
@@ -50,10 +50,10 @@ export default function spawnCommentsSection(){
         const submitButton = createEl("button", "Submit", "button")
         submitButton.addEventListener("click", () => {
             const commentText = document.querySelector(".commentsInput").value
-            getUserId().then(id => {
-                getUser(id).then(user => {
+            getMethod("/api/userId").then(userId => {
+                getUser(userId.id).then(user => {
                     const comment = {
-                        authorId: id,
+                        authorId: userId.id,
                         author: user.username,
                         date: getCurrentDay(),
                         text: commentText,

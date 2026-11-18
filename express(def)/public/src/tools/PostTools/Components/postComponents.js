@@ -1,6 +1,6 @@
 import { getValueFromLocalStorage } from "../../DataTools.js"
 import { createEl, createLink } from "../../DOM_tools.js"
-import { postMethod, getUserId, getUser } from "../../API_tools.js"
+import { postMethod, getMethod, getUser } from "../../API_tools.js"
 import spawnCommentsSection from "./commentsSection.js"
 
 export function createInfoText(key, value){
@@ -11,7 +11,7 @@ export function createInfoText(key, value){
 
 export function createStarButton(post){
     const starButton = createEl("button", `✯${post.stars}`, "button")
-    getUserId().then(id => {
+    getMethod("/api/userId").then(userId => {
         starButton.addEventListener("click", () => {
             if(starButton.classList.contains("starButton")){
                 post.stars = parseInt(post.stars)-1
@@ -21,7 +21,7 @@ export function createStarButton(post){
                 starButton.classList.add("starButton")
             }
             starButton.textContent = `✯${post.stars}`
-            postMethod({postID: post.id, id: id, stars: post.stars}, "/api/starPost").then(res => {
+            postMethod({postID: post.id, id: userId.id, stars: post.stars}, "/api/starPost").then(res => {
                 if(res){
                     const posts = getValueFromLocalStorage("posts")
                     for (let el of posts) {
@@ -36,7 +36,7 @@ export function createStarButton(post){
                 }else return false
             })
         })
-        getUser(id).then(user => {
+        getUser(userId.id).then(user => {
             if(user.starredPosts.indexOf(post.id) !== -1) {
                 starButton.classList.add("starButton")
             }
@@ -55,9 +55,9 @@ export function spawnUpdateAndDeleteButtons(postID, postCard){
     postCard.append(updateLink)
 
     const deleteButton = createEl("button", "Delete", "button")
-    getUserId().then(id => {
+    getMethod("/api/userId").then(userId => {
         deleteButton.addEventListener("click", () => {
-            postMethod({postID: postID, id: id}, "/api/deletePost").then(res => {
+            postMethod({postID: postID, id: userId.id}, "/api/deletePost").then(res => {
                 if(res){
                     postCard.remove()
                 }else{
@@ -76,9 +76,9 @@ export function spawnPost(post){
 
     postCard.append(createEl("h2", post.title, "header"))
 
-    getUserId().then(id => {
+    getMethod("/api/userId").then(userId => {
         const postContainer = createEl("div", "", "postContainer")
-        if(id === post.authorId) spawnUpdateAndDeleteButtons(post.id, postContainer)
+        if(userId.id === post.authorId) spawnUpdateAndDeleteButtons(post.id, postContainer)
 
         const infoContainer = createEl("div", "", "postInfoContainer")
         infoContainer.append(createInfoText("User", post.author))

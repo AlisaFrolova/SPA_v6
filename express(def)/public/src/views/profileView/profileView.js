@@ -1,7 +1,7 @@
 import spawnProfile from "./Components/spawnProfile.js"
 import { logout } from "../../tools/authTools.js"
 import { createEl, spawnSearchBox, createLink } from "../../tools/DOM_tools.js"
-import { postMethod, getUserId } from "../../tools/API_tools.js"
+import { postMethod, getMethod } from "../../tools/API_tools.js"
 import tokenData from "../../tokenModule.js"
 
 export default function profileView(){
@@ -32,7 +32,10 @@ export default function profileView(){
 
     section.append(createEl("p", "Your profile:", "profileText"))
 
-    getUserId().then(id => {
+    getMethod("/api/userId").then(res => {
+        if(!res) return
+        const id = res.id
+        
         localStorage.setItem("userId", id)
 
         section.append(spawnProfile(id))

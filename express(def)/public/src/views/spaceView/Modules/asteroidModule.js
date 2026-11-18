@@ -5,7 +5,7 @@ import { createEl } from "../../../tools/DOM_tools.js"
 import { getCurrentDay, getPreviousDay } from "../../../tools/DataTools.js"
 
 export default function createAsteroidSection(){
-    const asteroidSection = createEl("section", "", "asteroidSection")
+    const asteroidSection = createEl("section", "", "mainSection")
     asteroidSection.append(createEl("h2", "Asteroids", "header")) 
 
     const asteroidContainer = createEl("div", "", "asteroidContainer")

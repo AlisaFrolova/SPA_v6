@@ -1,10 +1,10 @@
 import { getValueFromLocalStorage } from "../../../tools/DataTools.js"
-import { getUserId } from "../../../tools/API_tools.js"
+import { getMethod } from "../../../tools/API_tools.js"
 import { createPost } from "../../../tools/PostTools/PostTools.js"
 
 export default function spawnPosts(container){
     container.innerHTML = ""
-    getUserId().then(id => { 
+    getMethod("/api/userId").then(res => { 
         let posts= getValueFromLocalStorage("posts")
 
         let endIndex = 5*parseInt(localStorage.getItem("pageNumber"))
@@ -14,8 +14,9 @@ export default function spawnPosts(container){
         }
         posts = posts.slice(startIndex, endIndex)
 
+        if(!res) return 
         for (const post of posts) {
-            container.append(createPost(id, post))
+            container.append(createPost(res.id, post))
         }
     })
 }

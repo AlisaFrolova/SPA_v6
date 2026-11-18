@@ -1,6 +1,5 @@
 import tokenData from "../tokenModule.js"
 import {logout} from "./authTools.js"
-import { createEl } from "./DOM_tools.js"
 
 export function postMethod(data, path){
     return tokenData.refreshAccessToken().then(() => {
@@ -16,46 +15,27 @@ export function postMethod(data, path){
             }
             if(res.status === 401) {logout(); return false }
             if(res.status === 400 || res.status === 500 || res.status === 403) {
-                //blabla
+                console.log("blablabla")
             }
         })
     })
 }
 
-export function isAdmin(){
+export function getMethod(path){
     return tokenData.refreshAccessToken().then(() => {
-        return fetch('/api/isAdmin', {   
+        return fetch(path, {   
         method: 'GET',
         headers: { 'Content-Type': 'application/json',
              "authorization": `Bearer ${tokenData.getAccessToken()}` }
-        }).then(response => {
-            if(response.status === 200){
-                return response.json().then(data => {
-                    if(data.isAdmin) return true
-                    else return false
+        }).then(res => {
+            if(res.status === 200){
+                return res.json().then(data => {
+                    return data
                 })
-            }else{
-                logout()
-                return false
             }
-        })
-    })
-}
-
-export function getUserId(){
-    return tokenData.refreshAccessToken().then(() => {
-        return fetch('/api/userId', {   
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json',
-             "authorization": `Bearer ${tokenData.getAccessToken()}` }
-        }).then(response => {
-            if(response.status === 200){
-                return response.json().then(data => {
-                    return data.id
-                })
-            }else{
-                logout()
-                return false
+            if(res.status === 401) {logout(); return false }
+            if(res.status === 400 || res.status === 500 || res.status === 403) {
+                console.log("blablabla")
             }
         })
     })

@@ -5,8 +5,21 @@
     "password": "$2b$10$z/fenhXbZPCAiNFaO1NF5uS2gdEWhzbs9oFbKFV88RQHzEaXymugm",
     "bio": "12345",
     "role": "admin",
-    "starredPosts": [],
-    "posts": []
+    "starredPosts": [
+      "267472"
+    ],
+    "posts": [
+      {
+        "authorId": "47177440",
+        "title": "1111",
+        "description": "`````",
+        "date": "2026-11-18 ",
+        "author": "wra1th",
+        "id": "333528",
+        "stars": 0,
+        "comments": []
+      }
+    ]
   },
   {
     "username": "wra11tthh",
@@ -23,7 +36,7 @@
         "date": "2026-11-16 ",
         "author": "wra11tthh",
         "id": "267472",
-        "stars": 1,
+        "stars": 2,
         "comments": [
           {
             "author": "appbreaker",
@@ -55,6 +68,17 @@
       "267472",
       "152157"
     ],
-    "posts": []
+    "posts": [
+      {
+        "authorId": "33436873",
+        "title": "dkdkdk",
+        "description": "ldldldld",
+        "date": "2026-11-16 ",
+        "author": "appbreaker",
+        "id": "707823",
+        "stars": 0,
+        "comments": []
+      }
+    ]
   }
 ]
