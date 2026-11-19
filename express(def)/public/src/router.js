@@ -38,44 +38,39 @@ const routes = {
     "/profile/password": updatePassSection
 };
 
-const appContainer = document.getElementById("app")
-
-export const initRouter = () => {
-    isAuth().then( res => {
+export async function initRouter(){
+    const appContainer = document.getElementById("app")
+    return isAuth().then( res => {
         if(!res) {
             appContainer.innerHTML = ""
             appContainer.prepend(signIn())
             appContainer.append(spawnFooter())
-            return
+        }else{
+            tokenData.refreshAccessToken().then(() => { 
+                const router = async () => {
+                const path = window.location.pathname
+                const viewPage = routes[path] || routes["/"]
+                appContainer.innerHTML = ""
+
+                spawnHeaderAndLogoutButton()
+                appContainer.append(viewPage())
+                appContainer.append(spawnFooter())
+                }
+                router()
+                document.body.addEventListener("click", e =>{
+                        if(e.target.matches("[data-link]")){
+                            e.preventDefault()
+                            window.history.pushState(null, null, e.target.href)
+                            router()
+                        }
+                    })
+            })
         }
-
-        tokenData.refreshAccessToken().then(() => { //(?) !!!
-            appContainer.append(homeView())
-            spawnHeaderAndLogoutButton()
-            appContainer.append(spawnFooter())
-
-            const router = async () => {
-            const path = window.location.pathname
-            const viewPage = routes[path] || routes["/"]
-            appContainer.innerHTML = ""
-
-            spawnHeaderAndLogoutButton()
-            appContainer.append(viewPage())
-            appContainer.append(spawnFooter())
-            }
-            document.body.addEventListener("click", e =>{
-                    if(e.target.matches("[data-link]")){
-                        e.preventDefault()
-                        window.history.pushState(null, null, e.target.href)
-                        router()
-                    }
-                })
-            document.addEventListener("DOMContentLoaded", router)
-        })
     })
 }
 
 function spawnHeaderAndLogoutButton(){//--
+    const appContainer = document.getElementById("app")
     appContainer.prepend(spawnHeader())
     const container = document.createElement("div")
     container.classList.add("buttonContainer")
@@ -91,7 +86,7 @@ function spawnHeaderAndLogoutButton(){//--
     })
 }
 
-function isAuth(){//-> (?) !!!
+async function isAuth(){//-> (?) !!!
     return fetch("/api/isAuth", {
         method: "POST",
         credentials: "include"

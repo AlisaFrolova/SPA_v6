@@ -52,7 +52,7 @@ app.get('/read', async (req, res) => {
      try {
       const users = await readUsersFile();
       const isSpawned = await spawnUsers(users)
-      if(isSpawned) return res.status(200)
+      if(isSpawned) return res.sendStatus(200)
      } catch (error) {
        console.error(error);
      res.status(500).json({ error: 'Error while reading file' });
