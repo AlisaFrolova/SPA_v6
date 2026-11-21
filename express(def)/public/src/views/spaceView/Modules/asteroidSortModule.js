@@ -16,8 +16,10 @@ export default function createSortMenu(){
     asteroidSortContainer.append(createSortBlock("range", "LD"))
     asteroidSortContainer.append(createSortBlock("checkbox", "Hazardous"))
     
-    asteroidSortContainer.append(createSortContainer("Size"))
-    asteroidSortContainer.append(createSortContainer("Distance"))
+    const innerSortContainer = createEl("div", "", "innerAsteroidContainer")
+    innerSortContainer.append(createSortContainer("Size"))
+    innerSortContainer.append(createSortContainer("Distance"))
+    asteroidSortContainer.append(innerSortContainer)
 
     asteroidSortMenu.append(asteroidSortContainer)
     

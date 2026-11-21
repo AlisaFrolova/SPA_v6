@@ -23,7 +23,9 @@ export default function spaceView(){
     APODSection.append(createEl("p", "Astronomy Picture of the Day", "textWhite"))
     
     //ASTEROIDS
-    const asteroidPreview = createEl("section", "", "asteroidPreview")
+    const previewContainer = createEl("section", "", "asteroidPreviewContainer")
+
+    const asteroidPreview = createEl("div", "", "asteroidPreview")
     asteroidPreview.append(createEl("p", "Asteroids", "accent"))
     asteroidPreview.append(createEl("p", "Search, filter and read about asteroids", "textWhite"))
 
@@ -33,7 +35,8 @@ export default function spaceView(){
 
     asteroidPreview.append(createLink("Read more...", "/space/asteroids"))
     
-    section.append(asteroidPreview)
+    previewContainer.append(asteroidPreview)
+    section.append(previewContainer)
 
     return section
 }

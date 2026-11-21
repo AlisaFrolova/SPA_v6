@@ -3,7 +3,6 @@ import { createEl } from "../../tools/DOM_tools.js"
 import { spawnSearchBox } from "../../tools/DOM_tools.js"
 
 export default function videoView(){
-    const saveTheme = localStorage.getItem("videoTheme")
     const section = createEl("section", "", "mainSection")
 
     section.append(createEl("h1", "Videos", "header"))
@@ -17,8 +16,7 @@ export default function videoView(){
     section.append(createEl("section", "", "previewCardsContainer"))
     section.append(createEl("div", "", "navContainer"))
 
-
-   if(saveTheme){spawnVideosSection('NASA')} 
+   spawnVideosSection()
 
     return section
 }

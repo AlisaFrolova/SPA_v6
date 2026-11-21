@@ -55,6 +55,7 @@ export function spawnUpdateAndDeleteButtons(postID, postCard){
     postCard.append(updateLink)
 
     const deleteButton = createEl("button", "Delete", "button")
+    deleteButton.classList.add("deletePostButton")
     getMethod("/api/userId").then(userId => {
         deleteButton.addEventListener("click", () => {
             postMethod({postID: postID, id: userId.id}, "/api/deletePost").then(res => {

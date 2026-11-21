@@ -6,38 +6,7 @@ export default function spawnProfile(id){
     const profile = createEl("section", "", "profile")
 
     const profileInfoContainer = createEl("div", "", "profileInfoContainer")
-
-    const avatarContainer = createEl("div", "", "avatarContainer")
-    avatarContainer.append(createEl("img", "", "avatar"))
-    
-        getMethod("/api/userId").then(res => {
-            if(!res) return
-            if(res.id === id){
-                const updateButton = createEl("button", "Update", "avatarUpdateButton")
-                updateButton.addEventListener("click", () => {
-                    profileInfoContainer.append(createInputBlock("avatar", "Choose a profile picture"))
-                    const avatarInput = document.querySelector(".avatarInput")
-                    if(!avatarInput) return
-                    avatarInput.type = "file"
-                    avatarInput.accept = "image/png, image/jpeg"
-
-                    const submitButton = createEl("button", "Submit", "button")
-                    submitButton.addEventListener("click", () => {
-                        const obj = {
-                            file: avatarInput.value,
-                            id: id
-                        }
-                        console.log(obj)
-                        //fetch blablabla
-                    })
-                    profileInfoContainer.append(submitButton)
-                })
-                avatarContainer.append(updateButton)
-            }
-            profileInfoContainer.append(avatarContainer)
-        })
-        
-        profile.append(profileInfoContainer)
+    profile.append(profileInfoContainer)
 
         const errorText = createEl("p", "User was not found", "errorText")
 

@@ -15,6 +15,7 @@ export default function spawnSortBox(){
         const stars = document.querySelector(".starsInput").value
         getPosts().then(() => {
             let posts = getValueFromLocalStorage("posts")
+            
             posts = posts.filter(el => {return el.stars >= stars})
             
             const postsJSON = JSON.stringify(posts)
@@ -32,6 +33,7 @@ function findMinAndMax(type){
     const obj = {min: 0, max: 0}
     const posts = getValueFromLocalStorage("posts")
     let tempArr = []
+    if(!posts) return {min: 0, max: 0}
     for (const post of posts) {
         tempArr.push(post[type])
     }

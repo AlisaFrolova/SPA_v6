@@ -11,11 +11,28 @@
     "posts": [
       {
         "authorId": "47177440",
-        "title": "1111",
-        "description": "`````",
-        "date": "2026-11-18 ",
+        "title": "blabla",
+        "description": "bla",
+        "date": "2026-11-21 ",
         "author": "wra1th",
-        "id": "333528",
+        "id": "346347",
+        "stars": 0,
+        "comments": [
+          {
+            "author": "wra1th",
+            "date": "2026-11-21 ",
+            "text": "blabla",
+            "id": "685143"
+          }
+        ]
+      },
+      {
+        "authorId": "47177440",
+        "title": "blabla",
+        "description": "bla",
+        "date": "2026-11-21 ",
+        "author": "wra1th",
+        "id": "665738",
         "stars": 0,
         "comments": []
       }

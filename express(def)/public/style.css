@@ -50,7 +50,7 @@
 
 /* text */
 .accent{
-    color:#2E3A92;
+    color: rgb(123, 133, 209);
     font-size: 2.7rem;
 }
 .textBlack{
@@ -238,18 +238,21 @@ blue-10: #2E3A92 */
     justify-content: space-around;
     color: rgb(13, 17, 23);
     border-radius: 20px;
-    border: 0.0667px solid rgb(35, 43, 59);
     align-items: center;
     background-color: rgb(226, 232, 240);
     padding: 40px 36px;
     width: 30%;
     height: 80%;
     gap: 12px;
-    transition: border 0.3s ease 0s, transform 0.3s ease 0s;
+}
+
+.innerInfoBlocks, .specialCard, .asteroidCard, .asteroidPreview, .previewCard, .post, .comment{
+    border: 0.0667px solid rgb(35, 43, 59);
+    transition: border-color 0.3s ease 0s, transform 0.3s ease 0s;
     transform: none;
 }
-.innerInfoBlocks:hover, .specialCard:hover{
-    border: 0.6px solid #2E3A92;
+.innerInfoBlocks:hover, .specialCard:hover, .asteroidCard:hover, .asteroidPreview:hover, .previewCard:hover, .post:hover, .comment:hover{
+    border-color:#2E3A92;
     transform:translateY(-6px);
 }
 
@@ -257,12 +260,11 @@ blue-10: #2E3A92 */
     background-color: #0d1117;
     color:#E2E8F0;
 }
-.specialCard > .accent{
-    color: rgb(123, 133, 209);
-}
 
 /* space */
-
+.spaceSection{
+    background-color: rgb(13, 17, 23);
+}
 /* APOD */
 .APODSection{
     background-size: cover;
@@ -270,13 +272,30 @@ blue-10: #2E3A92 */
     background-position: center;
     width: 100%;
     min-height: 500px;
+    background-color: rgb(0, 0, 0);
+    position:relative;
+    border-bottom: 0.0667px solid rgb(35, 43, 59);
+}
+.APODSection::after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    content: "";
+    background-image: linear-gradient(rgba(13, 17, 23, 0.15), rgba(13, 17, 23, 0) 40%, rgba(13, 17, 23, 0.9));
+    background-color: rgba(0, 0, 0, 0);
 }
 .APODSection > p{
-    font-size: 4rem;
-    font-weight: 800;
-    color:#ced0d3;
-    border: 1px solid #E2E8F0;
-    background:rgba(0, 0, 0, 0.3);
+    font-size: 3.5rem;
+    font-weight: 700;
+    border: 0.0667px solid rgba(226, 232, 240, 0.22);
+    background-color: rgba(13, 17, 23, 0.35);
+    border-radius: 20px;
+    letter-spacing: -1.2px;
+    backdrop-filter: blur(6px);
+    line-height: 60px;
+    padding: 10px 32px;
     text-align: center;
 }
 
@@ -286,7 +305,7 @@ blue-10: #2E3A92 */
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 2vw;
+    gap: 24px;
     width: 100vw;
     padding: 40px;
     background-position: center;
@@ -294,44 +313,53 @@ blue-10: #2E3A92 */
     background-repeat: no-repeat;
 }
 .asteroidCard{
-    gap: 1vw;
-    box-shadow: 0px 1px 8px 2px #2E3A92;
-    color:#ced0d3;
-    width: 25vw;
-    height: 50vh;
-    padding: 15px;
+    backdrop-filter: blur(8px);
+    background-color: rgba(20, 26, 36, 0.82);
+    border-radius: 20px;
+    gap: 6px;
+    line-height: 24px;
+    width: 44%;
+    padding: 22px 16px;
+    text-align: center;
 }
 .asteroidCard > p{
-    font-size: 1.4rem;
+    font-size: 1.1rem;
 }
 .asteroidCard > .accent{
     font-size: 1.8rem;
 }
 .hazardousAsteroid, .safeAsteroid{
-    font-weight: 700;
-    font-style: italic;
+    font-size: 1rem;
+    line-height: 22px;
+    background-color: rgba(111, 207, 142, 0.1);
+    border-radius: 25px;
+    border: 0.0667px solid rgba(111, 207, 142, 0.3);
+    color: rgb(111, 207, 142);
+    margin-top: 10px;
+    padding: 6px 14px;
 }
-.hazardousAsteroid{
-    color:#852b1b;
-}
-.safeAsteroid{
-    color:#4a9b36;
+.asteroidCard > .hazardousAsteroid{
+    background-color: rgba(240, 122, 122, 0.1);
+    border-color: rgba(240, 122, 122, 0.35);
+    color:rgb(240, 122, 122);
 }
 .asteroidImage{
-    width: 15vw;
-    height: 12vw;
+    height: 25vh;
+    border-radius: 20px;
 }
 
+.asteroidPreviewContainer{
+    padding: 40px;
+}
 .asteroidPreview{
     width: 100%;
-    font-size: 2rem;
-    gap: 30px;
-    background-color:#0d1117;
-    border: 3px solid #2E3A92;
+    gap: 40px;
+    line-height: 24px;
+    background-color: rgb(20, 26, 36);
+    border-radius: 20px;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    padding: 20px;
+    padding: 24px;
 }
 .previewImage{
     width: 20vw;
@@ -359,20 +387,38 @@ blue-10: #2E3A92 */
 
 .asteroidSortMenu{
     width: 100%;
-    height: 30vw;
-    border: 3px solid #2E3A92;
-    font-size: 1.5rem;
     gap: 20px;
     padding: 30px;
 }
 .asteroidSortContainer{
-    width: 100%;
-    height: 14vw;
     display: flex;
-    box-shadow: 0px 1px 8px 2px #2E3A92;
-    gap: 20px;
     align-items: center;
+    background-color: rgb(20, 26, 36);
+    border: 0.0667px solid rgb(35, 43, 59);
+    border-radius: 20px;
+    flex-wrap: wrap;
+    line-height: 24px;
+    padding: 28px 32px;
+    width: 90%;
+    gap: 40px;
     justify-content: center;
+}
+.asteroidSortContainer .sortBlock{
+    background-color: rgb(20, 26, 36);
+}
+.asteroidSortContainer .sortBlock:hover .asteroidLabel{
+    color:rgb(226, 232, 240);
+}
+.asteroidLabel{
+    color: rgb(151, 161, 179);
+    transition: color 0.3s ease 0s;
+}
+.sortBlock:has(.asteroidInput:checked) .asteroidLabel{
+    color: rgb(226, 232, 240);
+}
+.innerAsteroidContainer{
+    display: flex;
+    gap: 40px;
 }
 .sortBlock{
     position: relative;
@@ -394,16 +440,14 @@ blue-10: #2E3A92 */
     font-size: 1rem;
     border-radius: 25px;
 }
-
 .sortContainer{
-    width: 30%;
-}
-.sortContainer{
-    font-size: 1.3rem;
-    gap: 20px;
+    gap: 30px;
+    background: rgb(20, 26, 36);
 }
 .loadingText{
     font-size: 2.5rem;
+    justify-self: center;
+    padding-top: 50px;
 }
 
 /* news */
@@ -463,17 +507,10 @@ blue-10: #2E3A92 */
     font-size: 1rem;
     gap: 32px;
     padding: 20px;
-    border: 0.0667px solid rgb(35, 43, 59);
-    transform: none;
-    transition: border 0.3s ease 0s, transform 0.3s ease 0s;
     border-radius: 20px;
     display: flex;
     background-color: rgb(20, 26, 36);
     align-items: center;
-}
-.previewCard:hover{
-    border: 0.0667px solid #2E3A92;
-    transform:translateY(-5px);
 }
 .previewCard:hover .previewText > h2{
     color:rgb(123, 133, 209);
@@ -549,14 +586,6 @@ blue-10: #2E3A92 */
     font-weight: 700;
     width: 100%;
 }
-.messageContainer{
-    width: 100%;
-    padding: 10px;
-    font-size: 2rem;
-    border: 3px solid #2E3A92;
-    background: #3c4bb9;
-    text-align: center;
-}
 .loginButton, .logoutButton, .adminMenuButton{
     border-radius: 67px;
     padding: 0px 20px;
@@ -616,11 +645,13 @@ blue-10: #2E3A92 */
     align-items: center;
 }
 .searchInput{
-    font-size: 2rem;
+    font-size: 1.5rem;
     background: #eef5ff;
     width: 80%;
     color:#2E3A92;
     box-shadow: 0px 1px 8px 2px #2E3A92;
+    border-radius: 25px;
+    padding: 10px;
 }
 .searchLabel{
     font-size: 2rem;
@@ -668,34 +699,37 @@ blue-10: #2E3A92 */
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    min-height: 60vh;
     justify-content: center;
     align-items:flex-start;
     background: #0d1117;
     padding: 40px;
 }
-.errorText{
-    font-size: 2rem;
-    font-style: italic;
+.communitySection > .sortContainer{
+    background: #0d1117;
+    padding: 20px;
+    border: 0.0667px solid rgb(35, 43, 59);
+}
+.communitySection > .navContainer{
+    max-width: fit-content;
 }
 .post{
     padding: 30px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 1px 8px 2px #E2E8F0;
-    gap: 15px;
+    border-radius: 25px;
+    gap: 20px;
+    position: relative;
 }
-.postTitle{
-    font-size: 2.5rem;
-    font-style: italic;
+.postTitle, .errorText{
+    font-size: 1.5rem;
 }
 .postInfoContainer{
     background: #0d1117;
     display: flex;
     flex-direction: column;
     font-size: 1rem;
-    gap: 20px;
+    gap: 10px;
 }
 .postDescription{
     font-size: 1.5rem;
@@ -708,15 +742,19 @@ blue-10: #2E3A92 */
 .innerText{
     color:#E2E8F0;
 }
+.post > .button:last-child{
+    position: absolute;
+    left: 45%;
+    bottom: 12px;
+}
 .starButton{
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     color: #2E3A92;
     background: #E2E8F0;
     box-shadow: 0px 1px 8px 2px #2E3A92;
 }
 .linkBlock{
-    height: 7vh;
-    width: 15vw;
+    max-width: fit-content;
     margin: 0 auto;
     text-align: center;
 }
@@ -732,11 +770,20 @@ blue-10: #2E3A92 */
     background:#0d1117;
 }
 .inputSection{
-    box-shadow: 0px 1px 8px 2px #2E3A92;
+    border: 0.0667px solid rgb(35, 43, 59);
     display: flex;
     flex-direction: column;
     gap: 15px;
     padding: 25px;
+}
+.inputSection input{
+    border-radius: 20px;
+    border:0.0667px solid rgb(35, 43, 59);
+    background: rgb(226, 232, 240);
+    padding: 10px;
+}
+.titleInput{
+    height: 2.5vw;
 }
 .descriptionInput{
     height: 10vw;
@@ -765,21 +812,31 @@ blue-10: #2E3A92 */
     gap: 10px;
 }
 .postMark{
-    box-shadow: 0px 1px 8px 2px #2E3A92;
-    width: 150px;
+    border: 0.0667px solid rgb(35, 43, 59);
+    border-radius: 20px;
+    max-width: fit-content;
     text-align: center;
-    padding: 5px;
-    color:#ffffff;
-    font-style: italic;
-    font-size: 1.5rem;
+    padding: 10px 15px;
+    color:rgb(123, 133, 209);
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
-.message{
+.deletePostButton{
+    position: absolute;
+    top: 12px;
+    left: 44.5%;
+}
+.message, .messageContainer{
+    margin: 0 auto;
     font-size: 1.5rem;
-    box-shadow: 0px 1px 8px 2px #2E3A92;
-    padding: 5px;
-    color:#2E3A92;
-    background: #E2E8F0;
+    padding: 15px;
+    background: #2E3A92;
     text-align: center;
+    border-radius: 25px;
+    border: 1px solid rgb(226, 232, 240);
+    max-width: fit-content;
 }
 .commentsSection{
     display: flex;
@@ -789,6 +846,11 @@ blue-10: #2E3A92 */
     justify-content: center;
     padding: 30px;
 }
+.commentsInput{
+    border-radius: 25px;
+    padding: 10px;
+    font-size: 1.5rem;
+}
 .commentsContainer{
     display: flex;
     flex-direction: column;
@@ -797,7 +859,7 @@ blue-10: #2E3A92 */
     width: 100%;
 }
 .comment{
-    box-shadow: 0px 1px 8px 2px #2E3A92;
+    border-radius: 25px;
     padding: 30px;
     font-size: 1.5rem;
     display: flex;
@@ -805,14 +867,14 @@ blue-10: #2E3A92 */
     gap: 15px;
 }
 .commentMainText{
-    font-style: italic;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     border-left: 4px solid #E2E8F0;
     padding: 15px;
 }
 .commentText{
     font-weight: 200;
-    color: #ffffff;
+    color: rgb(138, 149, 230);
+    font-size: 1.6rem;
 }
 .commentDate{
     font-size: 0.8rem;
@@ -829,7 +891,7 @@ blue-10: #2E3A92 */
 }
 .profileText{
     background: #0d1117;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color:#2E3A92;
 }
 .profile{
@@ -840,43 +902,27 @@ blue-10: #2E3A92 */
     background: #0d1117;
     padding: 40px;
     align-items: center;
-    box-shadow: 0px 1px 8px 2px #2E3A92;
+    border: 0.0667px solid rgb(35, 43, 59);
 }
 .profile > p{
     font-size: 3.2rem;
 }
 .profile > .idText, .profileInfoContainer .idText{
-    font-style: italic;
     text-decoration: underline;
-    font-size: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 200;
 }
 .profileInfoContainer{
     gap: 20px;
     font-size: 3rem;
 }
-.avatarContainer{
-    width: 85px;
-    height: 85px;
-    border-radius: 50%;
-    box-shadow: 0px 1px 8px 2px #2E3A92;
-    position: relative;
-    z-index: 10;
-}
-.avatar{
-    width: 100%;
-    height: 100%;
-}
-.avatarUpdateButton{
-    position: absolute;
-    z-index: 20;
-    background-color: #0d1117;
-}
 .bioText{
-    font-style: italic;
-    font-weight: 200;
+    font-weight: 300;
+    font-size: 1.6rem;
 }
 .usernameText{
-    font-weight: 700;
+    font-size: 2rem;
+    color: rgb(123, 133, 209);
 }
 .buttonsContainer > .link{
     margin: 0 auto;
