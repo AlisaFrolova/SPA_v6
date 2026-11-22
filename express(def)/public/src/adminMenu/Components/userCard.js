@@ -1,7 +1,7 @@
-import { createEl } from "../../tools/DOM_tools.js"
+import { createEl, spawnNav } from "../../tools/DOM_tools.js"
 import createReturnButton from "./createReturnButton.js"
 import createButtons from "./cardButtons.js"
-import { createPost } from "../../tools/PostTools/PostTools.js"
+import { spawnPosts } from "../../tools/PostTools/PostTools.js"
 
 export default function createUserCard(userInfo){ 
     const card = createEl("div", "", "userCard")
@@ -31,13 +31,30 @@ function createFullUserCard(userInfo){
         
     container.append(createButtons(container, userInfo))
 
-    const postsContainer = createEl("div", "", "postsContainer")
-    container.append(postsContainer)
-    for (const post of userInfo.posts) {
-        postsContainer.append(createPost(userInfo.id, post))
-        const postMark = document.querySelector(".postMark")
-        if(postMark) postMark.remove()
-        const updateLink = document.querySelector(".post > .link")
-        if(updateLink) updateLink.remove()
+    if(userInfo.posts){
+        const postsContainer = createEl("div", "", "postsContainer")
+        container.append(postsContainer)
+
+        const postsJSON = JSON.stringify(userInfo.posts)
+        localStorage.setItem("posts", postsJSON)
+
+        localStorage.setItem("pageNumber", 1)
+        localStorage.setItem("maxPageNumber", Math.ceil(userInfo.posts.length/1))
+                        
+        const navigation = createEl("div", "", "navContainer")
+        container.append(navigation)
+        spawnNav(() => {
+            spawnPosts(userInfo.id, postsContainer, 1)
+            deleteMarks()
+        })
+
+        spawnPosts(userInfo.id, postsContainer, 1)
+        deleteMarks()
     }
+}
+function deleteMarks(){
+    const postMark = document.querySelector(".postMark")
+    if(postMark) postMark.remove()
+    const updateLink = document.querySelector(".post > .link")
+    if(updateLink) updateLink.remove()
 }

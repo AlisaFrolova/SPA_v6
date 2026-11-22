@@ -2,7 +2,7 @@ import { createEl, spawnSearchBox } from "../../tools/DOM_tools.js"
 import tokenData from "../../tokenModule.js"
 import createUserCard from "../Components/userCard.js"
 
-export default function spawnInfoContainer(){// -> &I
+export default function spawnInfoContainer(){
     const section = document.querySelector(".adminMenu")
 
     const infoContainer = document.querySelector(".userInfoContainer")

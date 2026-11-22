@@ -6,35 +6,33 @@
     "bio": "12345",
     "role": "admin",
     "starredPosts": [
-      "267472"
+      "267472",
+      "346347",
+      "707823"
     ],
     "posts": [
       {
         "authorId": "47177440",
-        "title": "blabla",
-        "description": "bla",
+        "title": "hhh",
+        "description": "hhh",
         "date": "2026-11-21 ",
         "author": "wra1th",
         "id": "346347",
-        "stars": 0,
+        "stars": 1,
         "comments": [
           {
             "author": "wra1th",
             "date": "2026-11-21 ",
             "text": "blabla",
             "id": "685143"
+          },
+          {
+            "author": "wra1th",
+            "date": "2026-11-22 ",
+            "text": "blablabla",
+            "id": "773676"
           }
         ]
-      },
-      {
-        "authorId": "47177440",
-        "title": "blabla",
-        "description": "bla",
-        "date": "2026-11-21 ",
-        "author": "wra1th",
-        "id": "665738",
-        "stars": 0,
-        "comments": []
       }
     ]
   },
@@ -93,7 +91,7 @@
         "date": "2026-11-16 ",
         "author": "appbreaker",
         "id": "707823",
-        "stars": 0,
+        "stars": 1,
         "comments": []
       }
     ]

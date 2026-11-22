@@ -1,4 +1,4 @@
-import { shortenDescription } from "../DataTools.js"
+import { shortenDescription, getValueFromLocalStorage } from "../DataTools.js"
 import { createEl } from "../DOM_tools.js"
 import tokenData from "../../tokenModule.js"
 import { createStarButton, createInfoText, spawnUpdateAndDeleteButtons, spawnPost, getPostById } from "./Components/postComponents.js"
@@ -24,6 +24,22 @@ export function getPosts(){
             }
         })
     })
+}
+
+export function spawnPosts(userId, container, numberOfPosts){
+    container.innerHTML = "" 
+    let posts= getValueFromLocalStorage("posts")
+
+    let endIndex = numberOfPosts*parseInt(localStorage.getItem("pageNumber"))
+    let startIndex = endIndex-numberOfPosts
+    if(endIndex > posts.length) {
+        endIndex = posts.length
+    }
+    posts = posts.slice(startIndex, endIndex)
+
+    for (const post of posts) {
+        container.append(createPost(userId, post))
+    }
 }
 
 export function createPost(id, post){

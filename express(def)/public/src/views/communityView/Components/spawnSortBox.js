@@ -1,14 +1,12 @@
 import { createEl } from "../../../tools/DOM_tools.js"
 import { getValueFromLocalStorage } from "../../../tools/DataTools.js"
-import { getPosts } from "../../../tools/PostTools/PostTools.js"
-import spawnPosts from "./spawnPosts.js"
-
+import { getPosts, spawnPosts } from "../../../tools/PostTools/PostTools.js"
+import { getMethod } from "../../../tools/API_tools.js"
 
 export default function spawnSortBox(){
     const section = createEl("section", "", "sortContainer")
 
     section.append(createRangeInput("stars"))
-    //section.append(createRangeInput("date")) i hate inputs, maybe 4ever NF
 
     const submitButton = createEl("button", "Submit", "button")
     submitButton.addEventListener("click", () => {
@@ -20,7 +18,11 @@ export default function spawnSortBox(){
             
             const postsJSON = JSON.stringify(posts)
             localStorage.setItem("posts", postsJSON)
-            spawnPosts(document.querySelector(".postsContainer"))
+            
+            getMethod("/api/userId").then(userId => {
+                if(!userId) return
+                spawnPosts(userId, document.querySelector(".postsContainer"), 5)
+            })
         })
         
     })

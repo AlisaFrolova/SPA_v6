@@ -12,16 +12,24 @@
     min-height: 100vh;
 }
 
-.mainSection, .section, .article, .asteroidCard,
-.APODSection, .asteroidSortMenu, .sortBlock, .sortContainer,
-.buttonContainer, .previewCardsContainer, .videoArticle,
-.profileInfoContainer, .buttonsContainer{
+.mainSection, .section, .article, .asteroidCard, .APODSection, .asteroidSortMenu, .sortBlock, .sortContainer, .buttonContainer, .previewCardsContainer, .videoArticle, .profileInfoContainer, .buttonsContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: #0d1117;
 }
+.innerInfoBlocks, .specialCard, .asteroidCard, .asteroidPreview, .previewCard, .post, .comment, .userCard{
+    border-radius: 20px;
+    border: 0.0667px solid rgb(35, 43, 59);
+    transition: border-color 0.3s ease 0s, transform 0.3s ease 0s;
+    transform: none;
+}
+.innerInfoBlocks:hover, .specialCard:hover, .asteroidCard:hover, .asteroidPreview:hover, .previewCard:hover, .post:hover, .comment:hover, .userCard:hover{
+    border-color:#2E3A92;
+    transform:translateY(-6px);
+}
+
 .mainSection{
     width: 100%;
     min-height: 400px;
@@ -98,11 +106,7 @@
     backdrop-filter: blur(12px);
 }
 
-/* black-60: #0d1117
-white-30: #E2E8F0
-blue-10: #2E3A92 */
-
-/* header */
+/* header and footer */
 .header, .footer{
     padding: 5px;
     width: 100%;
@@ -145,9 +149,6 @@ blue-10: #2E3A92 */
     color:rgb(190, 201, 223);
 }
 
-.footer{
-    border-top: 1px solid #E2E8F0;
-}
 
 /* home */
 .messageBlock{
@@ -237,7 +238,6 @@ blue-10: #2E3A92 */
     display: flex;
     justify-content: space-around;
     color: rgb(13, 17, 23);
-    border-radius: 20px;
     align-items: center;
     background-color: rgb(226, 232, 240);
     padding: 40px 36px;
@@ -245,17 +245,6 @@ blue-10: #2E3A92 */
     height: 80%;
     gap: 12px;
 }
-
-.innerInfoBlocks, .specialCard, .asteroidCard, .asteroidPreview, .previewCard, .post, .comment{
-    border: 0.0667px solid rgb(35, 43, 59);
-    transition: border-color 0.3s ease 0s, transform 0.3s ease 0s;
-    transform: none;
-}
-.innerInfoBlocks:hover, .specialCard:hover, .asteroidCard:hover, .asteroidPreview:hover, .previewCard:hover, .post:hover, .comment:hover{
-    border-color:#2E3A92;
-    transform:translateY(-6px);
-}
-
 .infoContainer .specialCard{
     background-color: #0d1117;
     color:#E2E8F0;
@@ -315,7 +304,6 @@ blue-10: #2E3A92 */
 .asteroidCard{
     backdrop-filter: blur(8px);
     background-color: rgba(20, 26, 36, 0.82);
-    border-radius: 20px;
     gap: 6px;
     line-height: 24px;
     width: 44%;
@@ -356,7 +344,6 @@ blue-10: #2E3A92 */
     gap: 40px;
     line-height: 24px;
     background-color: rgb(20, 26, 36);
-    border-radius: 20px;
     display: flex;
     align-items: center;
     padding: 24px;
@@ -507,7 +494,6 @@ blue-10: #2E3A92 */
     font-size: 1rem;
     gap: 32px;
     padding: 20px;
-    border-radius: 20px;
     display: flex;
     background-color: rgb(20, 26, 36);
     align-items: center;
@@ -717,7 +703,6 @@ blue-10: #2E3A92 */
     width: 100%;
     display: flex;
     flex-direction: column;
-    border-radius: 25px;
     gap: 20px;
     position: relative;
 }
@@ -776,7 +761,7 @@ blue-10: #2E3A92 */
     gap: 15px;
     padding: 25px;
 }
-.inputSection input{
+.inputSection input, .passInput{
     border-radius: 20px;
     border:0.0667px solid rgb(35, 43, 59);
     background: rgb(226, 232, 240);
@@ -859,7 +844,6 @@ blue-10: #2E3A92 */
     width: 100%;
 }
 .comment{
-    border-radius: 25px;
     padding: 30px;
     font-size: 1.5rem;
     display: flex;
@@ -888,6 +872,10 @@ blue-10: #2E3A92 */
     background: #0d1117;
     width: 100%;
     padding: 20px;
+}
+.inputSection{
+    background-color: #0d1117;
+    min-height: 40vh;
 }
 .profileText{
     background: #0d1117;
@@ -942,10 +930,10 @@ blue-10: #2E3A92 */
     width: 50%;
     right: 0;
     top: 0;
-    box-shadow: 0px 1px 8px 2px #2E3A92;
+    border-radius: 20px;
+    border: 1px solid rgb(138, 149, 230);
     background: #0d1117;
-    color:#E2E8F0;
-    padding: 20px;
+    padding: 20px 10px;
 }
 .adminMenu .header{
     width: 100%;
@@ -955,8 +943,7 @@ blue-10: #2E3A92 */
     display: flex;
     flex-direction: column;
     gap: 5px;
-    border: 3px solid #E2E8F0;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
 .userInfoContainer{
     width: 100%;

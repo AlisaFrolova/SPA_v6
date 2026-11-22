@@ -10,7 +10,7 @@ export function createInfoText(key, value){
 }
 
 export function createStarButton(post){
-    const starButton = createEl("button", `✯${post.stars}`, "button")
+    const starButton = createEl("button", `✵${post.stars}`, "button")
     getMethod("/api/userId").then(userId => {
         starButton.addEventListener("click", () => {
             if(starButton.classList.contains("starButton")){
@@ -20,7 +20,7 @@ export function createStarButton(post){
                 post.stars = parseInt(post.stars)+1
                 starButton.classList.add("starButton")
             }
-            starButton.textContent = `✯${post.stars}`
+            starButton.textContent = `✵${post.stars}`
             postMethod({postID: post.id, id: userId.id, stars: post.stars}, "/api/starPost").then(res => {
                 if(res){
                     const posts = getValueFromLocalStorage("posts")
