@@ -78,6 +78,7 @@ function spawnHeaderAndLogoutButton(){//--
     document.querySelector(".header").append(container)//-> 
 
     getMethod("/api/isAdmin").then(res => {
+        if(!res) return 
         if(res.isAdmin){
             spawnAdminMenu()
             const menu = document.querySelector(".adminMenu")

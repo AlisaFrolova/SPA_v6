@@ -18,7 +18,7 @@
         "date": "2026-11-21 ",
         "author": "wra1th",
         "id": "346347",
-        "stars": 1,
+        "stars": 2,
         "comments": [
           {
             "author": "wra1th",
@@ -31,6 +31,12 @@
             "date": "2026-11-22 ",
             "text": "blablabla",
             "id": "773676"
+          },
+          {
+            "author": "wra1th",
+            "date": "2026-11-23 ",
+            "text": "test1",
+            "id": "872375"
           }
         ]
       }
@@ -51,15 +57,8 @@
         "date": "2026-11-16 ",
         "author": "wra11tthh",
         "id": "267472",
-        "stars": 2,
-        "comments": [
-          {
-            "author": "appbreaker",
-            "date": "2026-11-16 ",
-            "text": "dddldlddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
-            "id": "458707"
-          }
-        ]
+        "stars": 3,
+        "comments": []
       },
       {
         "authorId": "65545760",
@@ -92,6 +91,49 @@
         "author": "appbreaker",
         "id": "707823",
         "stars": 1,
+        "comments": []
+      }
+    ]
+  },
+  {
+    "username": "JohnWick",
+    "id": "53721755",
+    "password": "$2b$10$jZlgxXAjWyaQsD3gxFzAeuP7eyyYWRqB5LBmMrKqTmYCOmnMtOvPy",
+    "bio": "the3rdtry",
+    "role": "user",
+    "starredPosts": [
+      "267472",
+      "346347"
+    ],
+    "posts": [
+      {
+        "authorId": "53721755",
+        "title": "####",
+        "description": "####",
+        "date": "2026-11-23 ",
+        "author": "JohnWick",
+        "id": "167081",
+        "stars": 0,
+        "comments": []
+      },
+      {
+        "authorId": "53721755",
+        "title": "2w3essq",
+        "description": "qqq",
+        "date": "2026-11-23 ",
+        "author": "JohnWick",
+        "id": "081222",
+        "stars": 0,
+        "comments": []
+      },
+      {
+        "authorId": "53721755",
+        "title": "1sttest",
+        "description": "wwww",
+        "date": "2026-11-23 ",
+        "author": "JohnWick",
+        "id": "801417",
+        "stars": 0,
         "comments": []
       }
     ]

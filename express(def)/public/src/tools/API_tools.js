@@ -1,8 +1,7 @@
 import tokenData from "../tokenModule.js"
 import {logout} from "./authTools.js"
 
-export function postMethod(data, path){
-    return tokenData.refreshAccessToken().then(() => {
+export function postMethod(data, path, isRefreshed = false){
         return fetch(path, {
             method: "POST",
             headers:{ "Content-Type": "application/json", 
@@ -12,17 +11,20 @@ export function postMethod(data, path){
             if(res.status === 200){
                 fetch("/write", { method: 'GET', headers: { 'Content-Type': 'application/json' }})
                 return true
-            }
-            if(res.status === 401) {logout(); return false }
-            if(res.status === 400 || res.status === 500 || res.status === 403) {
-                console.log("blablabla")
+            }else{
+                if(isRefreshed){
+                    logout()
+                    return false
+                }else {
+                    return tokenData.refreshAccessToken().then(() => {
+                        return postMethod(data, path, true)
+                    })
+                }
             }
         })
-    })
 }
 
-export function getMethod(path){
-    return tokenData.refreshAccessToken().then(() => {
+export function getMethod(path, isRefreshed = false){
         return fetch(path, {   
         method: 'GET',
         headers: { 'Content-Type': 'application/json',
@@ -32,17 +34,20 @@ export function getMethod(path){
                 return res.json().then(data => {
                     return data
                 })
-            }
-            if(res.status === 401) {logout(); return false }
-            if(res.status === 400 || res.status === 500 || res.status === 403) {
-                console.log("blablabla")
+            }else{
+                if(isRefreshed){
+                    logout()
+                    return false
+                }else {
+                    return tokenData.refreshAccessToken().then(() => {
+                        return getMethod(path, true)
+                    })
+                }
             }
         })
-    })
 }
 
-export function getUser(id){
-    return tokenData.refreshAccessToken().then(() => {
+export function getUser(id, isRefreshed = false){
         return fetch('/api/user', {   
         method: 'POST',
         headers: { 'Content-Type': 'application/json',
@@ -51,11 +56,17 @@ export function getUser(id){
         }).then(response => {
             if(response.status === 200){
                 return response.json().then(data => {
-                    return data //object: username, id, posts
+                    return data
                 })
             }else{
-                return false
+                if(isRefreshed){
+                    logout()
+                    return false
+                }else {
+                    return tokenData.refreshAccessToken().then(() => {
+                        return getUser(id, true)
+                    })
+                }
             }
         })
-    })
 }

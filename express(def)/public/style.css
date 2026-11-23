@@ -10,6 +10,7 @@
     position: relative;
     z-index: 10;
     min-height: 100vh;
+    background-color: #0d1117;
 }
 
 .mainSection, .section, .article, .asteroidCard, .APODSection, .asteroidSortMenu, .sortBlock, .sortContainer, .buttonContainer, .previewCardsContainer, .videoArticle, .profileInfoContainer, .buttonsContainer{
@@ -63,9 +64,6 @@
 }
 .textBlack{
     color:#0d1117;
-}
-.textWhite{
-    color:#E2E8F0;
 }
 .text{
     font-size: 1.3rem;
@@ -247,7 +245,7 @@
 }
 .infoContainer .specialCard{
     background-color: #0d1117;
-    color:#E2E8F0;
+    color: rgb(190, 201, 223);
 }
 
 /* space */
@@ -674,7 +672,6 @@
 
 /* community */
 .communitySection{
-    gap: 10px;
     background: #0d1117;
 }
 .communitySection > h1{
@@ -723,9 +720,6 @@
 }
 .postInfoText{
     color:#4758d8;
-}
-.innerText{
-    color:#E2E8F0;
 }
 .post > .button:last-child{
     position: absolute;
@@ -852,7 +846,7 @@
 }
 .commentMainText{
     font-size: 1.5rem;
-    border-left: 4px solid #E2E8F0;
+    border-left: 4px solid rgb(190, 201, 223);
     padding: 15px;
 }
 .commentText{
@@ -890,6 +884,7 @@
     background: #0d1117;
     padding: 40px;
     align-items: center;
+    border-radius: 20px;
     border: 0.0667px solid rgb(35, 43, 59);
 }
 .profile > p{

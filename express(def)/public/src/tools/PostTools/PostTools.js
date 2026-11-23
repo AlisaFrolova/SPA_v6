@@ -1,12 +1,12 @@
-import { shortenDescription, getValueFromLocalStorage } from "../DataTools.js"
+import { shortenDescription, getValueFromLocalStorage} from "../DataTools.js"
 import { createEl } from "../DOM_tools.js"
 import tokenData from "../../tokenModule.js"
 import { createStarButton, createInfoText, spawnUpdateAndDeleteButtons, spawnPost, getPostById } from "./Components/postComponents.js"
+import { logout } from "../authTools.js"
 
-export function getPosts(){
-    return tokenData.refreshAccessToken().then(() => {
+export function getPosts(isRefreshed = false){
         return fetch("/api/posts", {   
-        method: 'GET',
+        method: "GET",
         headers: { 'Content-Type': 'application/json',
              "authorization": `Bearer ${tokenData.getAccessToken()}` }
         }).then(res => {
@@ -20,10 +20,16 @@ export function getPosts(){
                     
                     return true})
             }else{
-                return false
+                if(isRefreshed){
+                    logout()
+                    return false
+                }else {
+                    return tokenData.refreshAccessToken().then(() => {
+                        return getPosts(true)
+                    })
+                }
             }
         })
-    })
 }
 
 export function spawnPosts(userId, container, numberOfPosts){

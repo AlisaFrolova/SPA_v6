@@ -26,9 +26,9 @@ export default function spawnInfoContainer(){
                             section.append(errorMessage)
                             setTimeout(() => {errorMessage.remove()}, 2800)
                         }
-                            else{
-                                section.append(createUserCard(data[userIndex]))
-                            }
+                        else{
+                            section.append(createUserCard(data[userIndex]))
+                        }
                     })
                 }
             })
