@@ -49,28 +49,7 @@
     "bio": "blablabla",
     "role": "user",
     "starredPosts": [],
-    "posts": [
-      {
-        "authorId": "65545760",
-        "title": "qqqqq",
-        "description": "qqqqqq",
-        "date": "2026-11-16 ",
-        "author": "wra11tthh",
-        "id": "267472",
-        "stars": 3,
-        "comments": []
-      },
-      {
-        "authorId": "65545760",
-        "title": "123",
-        "description": "321",
-        "date": "2026-11-16 ",
-        "author": "wra11tthh",
-        "id": "272750",
-        "stars": 0,
-        "comments": []
-      }
-    ]
+    "posts": []
   },
   {
     "username": "appbreaker",
@@ -106,16 +85,6 @@
       "346347"
     ],
     "posts": [
-      {
-        "authorId": "53721755",
-        "title": "####",
-        "description": "####",
-        "date": "2026-11-23 ",
-        "author": "JohnWick",
-        "id": "167081",
-        "stars": 0,
-        "comments": []
-      },
       {
         "authorId": "53721755",
         "title": "2w3essq",

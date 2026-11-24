@@ -3,8 +3,8 @@ import spawnInfoContainer from "./Modules/spawnInfo.js"
 
 export default function spawnAdminMenu(){
     const button = createEl("button", "Admin", "adminMenuButton")
+    const section = createEl("section", "", "adminMenu")
     button.addEventListener("click", () => {
-        const section = createEl("section", "", "adminMenu")
         document.body.append(section)
         createMenu()
     })
@@ -13,6 +13,8 @@ export default function spawnAdminMenu(){
 
 function createMenu(){
    const section = document.querySelector(".adminMenu")
+   if(!section) return
+   section.innerHTML = ""
 
     const returnButton = createEl("button", "X", "button")
     returnButton.addEventListener("click", () => {

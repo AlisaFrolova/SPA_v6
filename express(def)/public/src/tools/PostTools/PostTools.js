@@ -1,8 +1,8 @@
 import { shortenDescription, getValueFromLocalStorage} from "../DataTools.js"
 import { createEl } from "../DOM_tools.js"
 import tokenData from "../../tokenModule.js"
+import { checkToken } from "../API_tools.js"
 import { createStarButton, createInfoText, spawnUpdateAndDeleteButtons, spawnPost, getPostById } from "./Components/postComponents.js"
-import { logout } from "../authTools.js"
 
 export function getPosts(isRefreshed = false){
         return fetch("/api/posts", {   
@@ -20,14 +20,7 @@ export function getPosts(isRefreshed = false){
                     
                     return true})
             }else{
-                if(isRefreshed){
-                    logout()
-                    return false
-                }else {
-                    return tokenData.refreshAccessToken().then(() => {
-                        return getPosts(true)
-                    })
-                }
+                return checkToken(isRefreshed, () => {return getPosts(true)})
             }
         })
 }

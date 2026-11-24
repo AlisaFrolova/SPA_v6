@@ -1,8 +1,25 @@
 import spawnProfile from "./Components/spawnProfile.js"
 import { logout } from "../../tools/authTools.js"
 import { createEl, spawnSearchBox, createLink } from "../../tools/DOM_tools.js"
-import { postMethod, getMethod } from "../../tools/API_tools.js"
+import { postMethod, getMethod, checkToken } from "../../tools/API_tools.js"
 import tokenData from "../../tokenModule.js"
+
+function getUserByUsername(username, section, isRefreshed = false){
+    fetch("/api/userByUsername", {   
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json',
+                    "authorization": `Bearer ${tokenData.getAccessToken()}` },
+                body: JSON.stringify({username: username})
+            }).then(res => () => {
+                if(res.status === 200){
+                    res.json().then(user => {
+                        section.append(spawnProfile(user.id))
+                    })
+                }else{
+                    checkToken(isRefreshed, () => {return getUserByUsername(username, section, true)})
+                }
+            })
+}
 
 export default function profileView(){
     const section = createEl("section", "", "profileSection")
@@ -15,16 +32,7 @@ export default function profileView(){
 
         const text = document.querySelector(".profileText")
         if(text) text.textContent = `${searchInput.value} profile:`
-        tokenData.refreshAccessToken().then(() => {
-            fetch("/api/userByUsername", {   
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json',
-                    "authorization": `Bearer ${tokenData.getAccessToken()}` },
-                body: JSON.stringify({username: searchInput.value})
-            }).then(res => res.json()).then(user => {
-                section.append(spawnProfile(user.id))
-            })
-        })
+        getUserByUsername(searchInput.value, section)
 
         const container = document.querySelector(".buttonsContainer")
         if(container) container.remove()

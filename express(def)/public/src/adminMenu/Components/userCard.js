@@ -41,20 +41,24 @@ function createFullUserCard(userInfo){
         localStorage.setItem("pageNumber", 1)
         localStorage.setItem("maxPageNumber", Math.ceil(userInfo.posts.length/1))
                         
+        spawnPosts(userInfo.id, postsContainer, 1)
+        const post = postsContainer.firstElementChild
+        deleteMarks(post)
+
         const navigation = createEl("div", "", "navContainer")
         container.append(navigation)
         spawnNav(() => {
             spawnPosts(userInfo.id, postsContainer, 1)
-            deleteMarks()
+            deleteMarks(post)
         })
-
-        spawnPosts(userInfo.id, postsContainer, 1)
-        deleteMarks()
     }
 }
-function deleteMarks(){
-    const postMark = document.querySelector(".postMark")
+function deleteMarks(post){
+    const postMark = post.querySelector(".postMark")
     if(postMark) postMark.remove()
-    const updateLink = document.querySelector(".post > .link")
+    const updateLink = post.querySelector(".link")
     if(updateLink) updateLink.remove()
+    post.querySelector(".deletePostButton").addEventListener("click", () => {
+        //
+    })
 }

@@ -12,18 +12,20 @@ export function postMethod(data, path, isRefreshed = false){
                 fetch("/write", { method: 'GET', headers: { 'Content-Type': 'application/json' }})
                 return true
             }else{
-                if(isRefreshed){
-                    logout()
-                    return false
-                }else {
-                    return tokenData.refreshAccessToken().then(() => {
-                        return postMethod(data, path, true)
-                    })
-                }
+                return checkToken(isRefreshed, () => {return postMethod(data, path, true)})
             }
         })
 }
-
+export function checkToken(status, func){
+    if(status){
+        logout()
+        return false
+    }else {
+        return tokenData.refreshAccessToken().then(() => {
+            return func()
+        })
+    }
+}
 export function getMethod(path, isRefreshed = false){
         return fetch(path, {   
         method: 'GET',
@@ -35,14 +37,7 @@ export function getMethod(path, isRefreshed = false){
                     return data
                 })
             }else{
-                if(isRefreshed){
-                    logout()
-                    return false
-                }else {
-                    return tokenData.refreshAccessToken().then(() => {
-                        return getMethod(path, true)
-                    })
-                }
+                return checkToken(isRefreshed, () => {return getMethod(path, true)})
             }
         })
 }
@@ -59,14 +54,7 @@ export function getUser(id, isRefreshed = false){
                     return data
                 })
             }else{
-                if(isRefreshed){
-                    logout()
-                    return false
-                }else {
-                    return tokenData.refreshAccessToken().then(() => {
-                        return getUser(id, true)
-                    })
-                }
+                return checkToken(isRefreshed, () => {return getUser(id, true)})
             }
         })
 }

@@ -1,4 +1,5 @@
 import { createEl, spawnSearchBox } from "../../tools/DOM_tools.js"
+import { checkToken } from "../../tools/API_tools.js"
 import tokenData from "../../tokenModule.js"
 import createUserCard from "../Components/userCard.js"
 
@@ -11,9 +12,11 @@ export default function spawnInfoContainer(){
     infoContainer.append(spawnSearchBox(() => {
         const prevCard = document.querySelector(".userCard")
         if(prevCard) prevCard.remove()
-
-        tokenData.refreshAccessToken().then(() =>{
-            fetch("/api/getUsers", {   
+        getUsers(section)
+    }))
+}
+function getUsers(section, isRefreshed = false){
+    fetch("/api/getUsers", {   
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json',
                     "authorization": `Bearer ${tokenData.getAccessToken()}` }
@@ -30,8 +33,8 @@ export default function spawnInfoContainer(){
                             section.append(createUserCard(data[userIndex]))
                         }
                     })
+                }else{
+                    checkToken(isRefreshed, () => {return getUsers(section, true)})
                 }
             })
-        })
-    }))
 }
