@@ -10,13 +10,17 @@ function getUserByUsername(username, section, isRefreshed = false){
                 headers: { 'Content-Type': 'application/json',
                     "authorization": `Bearer ${tokenData.getAccessToken()}` },
                 body: JSON.stringify({username: username})
-            }).then(res => () => {
+            }).then(res => {
                 if(res.status === 200){
                     res.json().then(user => {
                         section.append(spawnProfile(user.id))
                     })
                 }else{
-                    checkToken(isRefreshed, () => {return getUserByUsername(username, section, true)})
+                    if(res.status === 404){
+                        section.append(createEl("p", "User was not found", "errorText"))
+                    }else{
+                        checkToken(isRefreshed, () => {return getUserByUsername(username, section, true)})
+                    }
                 }
             })
 }

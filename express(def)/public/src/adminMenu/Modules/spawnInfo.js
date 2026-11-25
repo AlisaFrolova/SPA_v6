@@ -23,7 +23,7 @@ function getUsers(section, isRefreshed = false){
             }).then(res => {
                 if(res.status === 200){
                     res.json().then(data => {
-                        const userIndex = data.findIndex(user => user.username === searchInput.value)
+                        const userIndex = data.findIndex(user => user.username === section.querySelector(".searchInput").value)
                         if(userIndex === -1) {
                             const errorMessage = createEl("p", "User was not found", "errorText")
                             section.append(errorMessage)

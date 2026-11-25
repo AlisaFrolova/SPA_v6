@@ -55,6 +55,7 @@ export default function spawnCommentsSection(){
 }
 
 function spawnComments(user, container){
+    let hasComments = false
     getPosts().then(response => {
         if(!response) return
         container.innerHTML = ""
@@ -72,8 +73,12 @@ function spawnComments(user, container){
                         }
                     })
                     container.append(newComment)
+                    hasComments = true
                 }
             }
+        }
+        if(!hasComments){
+            container.append(createEl("p", "No comments yet...", "errorText"))
         }
     })
 }

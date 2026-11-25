@@ -39,15 +39,8 @@ function findMinAndMax(type){
     for (const post of posts) {
         tempArr.push(post[type])
     }
-    if(type === "date"){
-        tempArr = tempArr.sort((a,b) => a>b)
-        obj["min"] = tempArr[0]
-        obj["max"] = tempArr[tempArr.length-1]
-        console.log(obj)
-    }else{
-        obj["min"] = Math.min(...tempArr)
-        obj["max"] = Math.max(...tempArr)
-    }
+    obj["min"] = Math.min(...tempArr)
+    obj["max"] = Math.max(...tempArr)
     return obj
 }
 

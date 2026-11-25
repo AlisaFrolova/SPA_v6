@@ -8,7 +8,8 @@
     "starredPosts": [
       "267472",
       "346347",
-      "707823"
+      "707823",
+      "131501"
     ],
     "posts": [
       {
@@ -18,7 +19,7 @@
         "date": "2026-11-21 ",
         "author": "wra1th",
         "id": "346347",
-        "stars": 2,
+        "stars": 3,
         "comments": [
           {
             "author": "wra1th",
@@ -33,12 +34,49 @@
             "id": "773676"
           },
           {
-            "author": "wra1th",
-            "date": "2026-11-23 ",
-            "text": "test1",
-            "id": "872375"
+            "author": "appbreaker",
+            "date": "2026-11-25 ",
+            "text": "scammer",
+            "id": "621073"
           }
         ]
+      },
+      {
+        "authorId": "47177440",
+        "title": "blabla",
+        "description": ".",
+        "date": "2026-11-25 ",
+        "author": "wra1th",
+        "id": "131501",
+        "stars": 2,
+        "comments": [
+          {
+            "author": "wra1th",
+            "date": "2026-11-25 ",
+            "text": "blablabla",
+            "id": "346143"
+          }
+        ]
+      },
+      {
+        "authorId": "47177440",
+        "title": "why 4^2 is not equal to 8",
+        "description": "???",
+        "date": "2026-11-25 ",
+        "author": "wra1th",
+        "id": "785613",
+        "stars": 0,
+        "comments": []
+      },
+      {
+        "authorId": "47177440",
+        "title": "blabla",
+        "description": "bla",
+        "date": "2026-11-25 ",
+        "author": "wra1th",
+        "id": "178517",
+        "stars": 0,
+        "comments": []
       }
     ]
   },
@@ -54,23 +92,79 @@
   {
     "username": "appbreaker",
     "id": "33436873",
-    "password": "$2b$10$t7xEkTyRS2gsaRbqap/Taesmw9cwL2VdwN5gYvp99./Dl47.ggfEq",
+    "password": "$2b$10$th3ox0cLP0hQsUVOJXzaQ.ab4ui5.bb8N3u76AF7RcTi9vwhh6sDa",
     "bio": "No bio yet...",
     "role": "user",
     "starredPosts": [
       "267472",
-      "152157"
+      "152157",
+      "346347",
+      "801417",
+      "131501",
+      "707823",
+      "777072",
+      "081222"
     ],
     "posts": [
       {
         "authorId": "33436873",
-        "title": "dkdkdk",
-        "description": "ldldldld",
+        "title": "what a boring place",
+        "description": "12.",
         "date": "2026-11-16 ",
         "author": "appbreaker",
         "id": "707823",
+        "stars": 2,
+        "comments": [
+          {
+            "author": "appbreaker",
+            "date": "2026-11-25 ",
+            "text": "the best user ever",
+            "id": "558212"
+          },
+          {
+            "author": "appbreaker",
+            "date": "2026-11-25 ",
+            "text": "what a nice app, lets break it?",
+            "id": "684078"
+          }
+        ]
+      },
+      {
+        "authorId": "33436873",
+        "title": "message",
+        "description": ".",
+        "date": "2026-11-25 ",
+        "author": "appbreaker",
+        "id": "777072",
         "stars": 1,
         "comments": []
+      },
+      {
+        "authorId": "33436873",
+        "title": "blablabla",
+        "description": "3",
+        "date": "2026-11-25 ",
+        "author": "appbreaker",
+        "id": "116266",
+        "stars": 0,
+        "comments": []
+      },
+      {
+        "authorId": "33436873",
+        "title": "nuh uh",
+        "description": "f`(x^2 - x^3 +x^4) = ?",
+        "date": "2026-11-25 ",
+        "author": "appbreaker",
+        "id": "712080",
+        "stars": 1,
+        "comments": [
+          {
+            "author": "JohnWick",
+            "date": "2026-11-25 ",
+            "text": "2x - (x^3)` + (x^4)` = 2x - 3x^2 + 4x^3 = x(2-3x+4x^2)",
+            "id": "374877"
+          }
+        ]
       }
     ]
   },
@@ -82,7 +176,8 @@
     "role": "user",
     "starredPosts": [
       "267472",
-      "346347"
+      "346347",
+      "712080"
     ],
     "posts": [
       {
@@ -92,8 +187,15 @@
         "date": "2026-11-23 ",
         "author": "JohnWick",
         "id": "081222",
-        "stars": 0,
-        "comments": []
+        "stars": 1,
+        "comments": [
+          {
+            "author": "appbreaker",
+            "date": "2026-11-25 ",
+            "text": "blablabla",
+            "id": "815552"
+          }
+        ]
       },
       {
         "authorId": "53721755",
@@ -102,6 +204,26 @@
         "date": "2026-11-23 ",
         "author": "JohnWick",
         "id": "801417",
+        "stars": 1,
+        "comments": []
+      }
+    ]
+  },
+  {
+    "username": "appbreaker2",
+    "id": "38712588",
+    "password": "$2b$10$oC0pjHpCe0UqHR.SE1gFeOp9/LZn9yIY7UEMxxJP4CuLMFTC4/Ppa",
+    "bio": "No bio yet...",
+    "role": "user",
+    "starredPosts": [],
+    "posts": [
+      {
+        "authorId": "38712588",
+        "title": " ",
+        "description": " ",
+        "date": "2026-11-25 ",
+        "author": "appbreaker2",
+        "id": "505578",
         "stars": 0,
         "comments": []
       }

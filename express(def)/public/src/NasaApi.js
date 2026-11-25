@@ -1,5 +1,6 @@
 //tOrrEVAmkqSnlbf5QcUBPCrfWOuqPplOzbi2JveA
- const APIKey = "tOrrEVAmkqSnlbf5QcUBPCrfWOuqPplOzbi2JveA"
+const APIKey = "tOrrEVAmkqSnlbf5QcUBPCrfWOuqPplOzbi2JveA"
+
 export async function getAPOD(date){ //date in YYYY-MM-DD only; wotk with img NF
     try{
         const response = await fetch(`https://science.nasa.gov/wp-json/wp/v2/apod-basic/`)

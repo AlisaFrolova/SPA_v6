@@ -67,7 +67,7 @@ app.get('/write', async (req, res) => {
     return res.status(201)
     } catch (error) {
        console.error(error);
-       return res.status(500).json({ error: 'Ошибка при записи в файл' });
+       return res.status(500).json({ error: 'Error while writing file' });
     }
 });
 
@@ -207,13 +207,13 @@ async function validationMiddleware(req,res,next){
 //user
 app.post("/api/user", authMiddleware, async (req, res) => {
   const user = await getUser(req.body.id) 
-  if(!user) return res.status(401).json({message: "User was not found"})
+  if(!user) return res.status(404).json({message: "User was not found"})
   return res.status(200).json(user)
 })
 
 app.post("/api/userByUsername", authMiddleware, async(req,res)=>{
   const user = await getUserByUsername(req.body.username) 
-  if(!user) return res.status(401).json({message: "User was not found"})
+  if(!user) return res.status(404).json({message: "User was not found"})
   return res.status(200).json(user)
 })
 
@@ -241,7 +241,7 @@ app.post("/api/updatePass", authMiddleware, validationMiddleware, async (req,res
   if(!isValidCredentials(newPassword)) return res.status(400).json({message: "Invalid password"})
 
   const user = await getUser(id)
-  if (!user) return res.status(401).json({ message: "User not found" })
+  if (!user) return res.status(404).json({ message: "User was not found" })
  
   const isUpdated = await updatePass(id, newPassword, password)
   if(isUpdated) return res.status(200).json({message: "Password was changed"})
@@ -253,7 +253,7 @@ app.post("/api/updatePass", authMiddleware, validationMiddleware, async (req,res
 
 //community-page
 function isValidData(data){
-  if(data.length > 1 && data.length < 450) return true
+  if(data.length > 0 && data.length < 450) return true
   else return false
 }
 

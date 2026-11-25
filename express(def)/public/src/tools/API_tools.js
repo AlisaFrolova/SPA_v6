@@ -12,11 +12,15 @@ export function postMethod(data, path, isRefreshed = false){
                 fetch("/write", { method: 'GET', headers: { 'Content-Type': 'application/json' }})
                 return true
             }else{
-                return checkToken(isRefreshed, () => {return postMethod(data, path, true)})
+                if(res.status === 404 || res.status === 400){
+                    return false
+                }else{
+                    return checkToken(isRefreshed, () => {return postMethod(data, path, true)})
+                }
             }
         })
 }
-export function checkToken(status, func){
+export function checkToken(status, func){ //!!!do NOT logout everywhere
     if(status){
         logout()
         return false

@@ -706,6 +706,9 @@
 .postTitle, .errorText{
     font-size: 1.5rem;
 }
+.errorText{
+    margin: 0 auto;
+}
 .postInfoContainer{
     background: #0d1117;
     display: flex;
@@ -886,9 +889,6 @@
     align-items: center;
     border-radius: 20px;
     border: 0.0667px solid rgb(35, 43, 59);
-}
-.profile > p{
-    font-size: 3.2rem;
 }
 .profile > .idText, .profileInfoContainer .idText{
     text-decoration: underline;

@@ -4,7 +4,7 @@ let tokenData
 export default tokenData = {
     setAccessToken(accessToken){
         currentAccessToken = accessToken
-        console.log(currentAccessToken)
+        //console.log(currentAccessToken)
     },
     getAccessToken(){
         return currentAccessToken
@@ -17,7 +17,7 @@ export default tokenData = {
             if(data.accessToken === undefined){
                 return false
             }else{
-                console.log("acces token was refreshed")
+                //console.log("acces token was refreshed")
                 currentAccessToken = data.accessToken
                 return true
             }

@@ -1,6 +1,6 @@
 import { createPost } from "../../../tools/PostTools/PostTools.js"
 import { getUser, getMethod } from "../../../tools/API_tools.js"
-import { createEl, createInputBlock } from "../../../tools/DOM_tools.js"
+import { createEl } from "../../../tools/DOM_tools.js"
 
 export default function spawnProfile(id){
     const profile = createEl("section", "", "profile")
@@ -19,17 +19,18 @@ export default function spawnProfile(id){
 
         const postsContainer = createEl("div", "", "postsContainer")
         getMethod("/api/userId").then(res => {
-            if(user.posts){
+            if(user.posts.length > 0){
                 for (const post of user.posts) {
                     postsContainer.append(createPost(res.id, post))
                 }
                 const postsJSON = JSON.stringify(user.posts)
                 localStorage.setItem("posts", postsJSON)
+                profile.append(postsContainer)
+            }else{
+                profile.append(createEl("p", "No posts yet...", "errorText"))
             }
-            profile.append(postsContainer)
         })
         
-
         const text = document.querySelector(".errorText")
         if(text) text.remove()
         })
